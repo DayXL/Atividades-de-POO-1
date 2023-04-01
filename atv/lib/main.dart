@@ -68,16 +68,34 @@ class SigHat extends StatelessWidget {
 
         body: TabBarView(
           children: <Widget>[
-            ListView(
+            Column(
               children: <Widget> [
                 TextButton.icon(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        side: BorderSide(width: 3, color: Colors.black),
+                      ),
+                    ),
+                  ),
+
                   label: const Text('Modúlo Boné'),
                   icon: const Icon(Icons.whatshot),
                   onPressed: () {
                   }
                 ),
-
+                
                 TextButton.icon(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        side: BorderSide(width: 3, color: Colors.black),
+                      ),
+                    ),
+                  ),
+
                   label: const Text('Modúlo Fornecedor'),
                   icon: const Icon(Icons.airport_shuttle),
                   onPressed: () {
@@ -85,6 +103,15 @@ class SigHat extends StatelessWidget {
                 ),
 
                 TextButton.icon(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        side: BorderSide(width: 3, color: Colors.black),
+                      ),
+                    ),
+                  ),
+
                   label: const Text('Modúlo Estoque'),
                   icon: const Icon(Icons.all_inclusive),
                   onPressed: () {
@@ -92,6 +119,15 @@ class SigHat extends StatelessWidget {
                 ),
 
                 TextButton.icon(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        side: BorderSide(width: 3, color: Colors.black),
+                      ),
+                    ),
+                  ),
+
                   label: const Text('Relatórios'),
                   icon: const Icon(Icons.add_chart),
                   onPressed: () {
@@ -101,9 +137,18 @@ class SigHat extends StatelessWidget {
               ],
             ),
 
-            ListView(
+            Column(
               children: <Widget> [
                 TextButton.icon(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        side: BorderSide(width: 3, color: Colors.black),
+                      ),
+                    ),
+                  ),
+
                   label: const Text('Modúlo Cliente'),
                   icon: const Icon(Icons.people_alt),
                   onPressed: () {
@@ -111,6 +156,15 @@ class SigHat extends StatelessWidget {
                 ),
 
                 TextButton.icon(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        side: BorderSide(width: 3, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  
                   label: const Text('Modúlo Pedido'),
                   icon: const Icon(Icons.add_shopping_cart ),
                   onPressed: () {
