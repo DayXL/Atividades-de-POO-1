@@ -77,7 +77,7 @@ class SigHat extends StatelessWidget {
                   style: TextButton.styleFrom(
                     side: const BorderSide(width: 1.0),
                     padding: const EdgeInsets.all(16.0),
-                    textStyle: const TextStyle(fontSize: 20),
+                    textStyle: const TextStyle(fontSize: 25),
                   ),
 
                   label: const Text('Modúlo Boné'),
