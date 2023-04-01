@@ -68,20 +68,57 @@ class SigHat extends StatelessWidget {
 
         body: TabBarView(
           children: <Widget>[
-            TextButton.icon(
-              label: const Text('Modúlo Boné'),
-              icon: const Icon(Icons.whatshot),
-              onPressed: () {
-              }
+            ListView(
+              children: <Widget> [
+                TextButton.icon(
+                  label: const Text('Modúlo Boné'),
+                  icon: const Icon(Icons.whatshot),
+                  onPressed: () {
+                  }
+                ),
+
+                TextButton.icon(
+                  label: const Text('Modúlo Fornecedor'),
+                  icon: const Icon(Icons.airport_shuttle),
+                  onPressed: () {
+                  }
+                ),
+
+                TextButton.icon(
+                  label: const Text('Modúlo Estoque'),
+                  icon: const Icon(Icons.all_inclusive),
+                  onPressed: () {
+                  }
+                ),
+
+                TextButton.icon(
+                  label: const Text('Relatórios'),
+                  icon: const Icon(Icons.add_chart),
+                  onPressed: () {
+                  }
+                ),
+
+              ],
             ),
 
-            TextButton.icon(
-              label: const Text('Modúlo Cliente'),
-              icon: const Icon(Icons.people_alt),
-              onPressed: () {
-              }
-            ),
+            ListView(
+              children: <Widget> [
+                TextButton.icon(
+                  label: const Text('Modúlo Cliente'),
+                  icon: const Icon(Icons.people_alt),
+                  onPressed: () {
+                  }
+                ),
 
+                TextButton.icon(
+                  label: const Text('Modúlo Pedido'),
+                  icon: const Icon(Icons.add_shopping_cart ),
+                  onPressed: () {
+                  }
+                ),
+
+              ],
+            ),
           ],
 
         ),
@@ -89,3 +126,5 @@ class SigHat extends StatelessWidget {
     );
   }
 }
+
+
