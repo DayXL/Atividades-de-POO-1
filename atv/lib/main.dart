@@ -158,6 +158,19 @@ class SigHat extends StatelessWidget {
                   }
                 ),
 
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(width: 1.0),
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 25),
+                  ),
+                  
+                  label: const Text('Fechar programa'),
+                  icon: const Icon(Icons.adjust),
+                  onPressed: () {
+                  }
+                ),
+
               ],
             ),
           ],
