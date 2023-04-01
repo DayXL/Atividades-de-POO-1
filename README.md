@@ -1,2 +1,2 @@
-# Atividades-de-POO-1
-Aprendendo poo
+# Atividades-de-Dart
+Aprendendo dart/poo
