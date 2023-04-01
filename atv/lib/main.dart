@@ -69,15 +69,15 @@ class SigHat extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+
               children: <Widget> [
                 TextButton.icon(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(width: 3, color: Colors.black),
-                      ),
-                    ),
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(width: 1.0),
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 20),
                   ),
 
                   label: const Text('Modúlo Boné'),
@@ -87,13 +87,10 @@ class SigHat extends StatelessWidget {
                 ),
                 
                 TextButton.icon(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(width: 3, color: Colors.black),
-                      ),
-                    ),
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(width: 1.0),
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 25),
                   ),
 
                   label: const Text('Modúlo Fornecedor'),
@@ -103,13 +100,10 @@ class SigHat extends StatelessWidget {
                 ),
 
                 TextButton.icon(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(width: 3, color: Colors.black),
-                      ),
-                    ),
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(width: 1.0),
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 25),
                   ),
 
                   label: const Text('Modúlo Estoque'),
@@ -119,13 +113,10 @@ class SigHat extends StatelessWidget {
                 ),
 
                 TextButton.icon(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(width: 3, color: Colors.black),
-                      ),
-                    ),
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(width: 1.0),
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 25),
                   ),
 
                   label: const Text('Relatórios'),
@@ -138,15 +129,14 @@ class SigHat extends StatelessWidget {
             ),
 
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+
               children: <Widget> [
                 TextButton.icon(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(width: 3, color: Colors.black),
-                      ),
-                    ),
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(width: 1.0),
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 25),
                   ),
 
                   label: const Text('Modúlo Cliente'),
@@ -156,13 +146,10 @@ class SigHat extends StatelessWidget {
                 ),
 
                 TextButton.icon(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(width: 3, color: Colors.black),
-                      ),
-                    ),
+                  style: TextButton.styleFrom(
+                    side: const BorderSide(width: 1.0),
+                    padding: const EdgeInsets.all(16.0),
+                    textStyle: const TextStyle(fontSize: 25),
                   ),
                   
                   label: const Text('Modúlo Pedido'),
