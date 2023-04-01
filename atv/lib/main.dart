@@ -68,26 +68,22 @@ class SigHat extends StatelessWidget {
 
         body: TabBarView(
           children: <Widget>[
-            ListView.builder(
-              itemCount: 4,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  tileColor: index.isOdd ? oddItemColor : evenItemColor,
-                  title: Text('${titles[0]} $index'),
-                );
-              },
+            TextButton.icon(
+              label: const Text('Modúlo Boné'),
+              icon: const Icon(Icons.whatshot),
+              onPressed: () {
+              }
             ),
 
-            ListView.builder(
-              itemCount: 2,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  tileColor: index.isOdd ? oddItemColor : evenItemColor,
-                  title: Text('${titles[1]} $index'),
-                );
-              },
+            TextButton.icon(
+              label: const Text('Modúlo Cliente'),
+              icon: const Icon(Icons.people_alt),
+              onPressed: () {
+              }
             ),
+
           ],
+
         ),
       ),
     );
