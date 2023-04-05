@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          colorSchemeSeed: Color.fromRGBO(35, 34, 37, 1), useMaterial3: true),
+        colorSchemeSeed: Color.fromRGBO(35, 34, 37, 1), useMaterial3: true),
       home: const SigHat(),
     );
   }
@@ -54,83 +54,93 @@ class SigHat extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                TextButton.icon(
-                    style: TextButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
-                      padding: const EdgeInsets.all(16.0),
-                      textStyle: const TextStyle(fontSize: 25),
-                    ),
-                    label: const Text('Modúlo Boné'),
-                    icon: const Icon(Icons.whatshot),
-                    onPressed: () {}),
-                TextButton.icon(
-                    style: TextButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
-                      padding: const EdgeInsets.all(16.0),
-                      textStyle: const TextStyle(fontSize: 25),
-                    ),
-                    label: const Text('Modúlo Fornecedor'),
-                    icon: const Icon(Icons.airport_shuttle),
-                    onPressed: () {}),
-                TextButton.icon(
-                    style: TextButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
-                      padding: const EdgeInsets.all(16.0),
-                      textStyle: const TextStyle(fontSize: 25),
-                    ),
-                    label: const Text('Modúlo Estoque'),
-                    icon: const Icon(Icons.all_inclusive),
-                    onPressed: () {}),
-                TextButton.icon(
-                    style: TextButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
-                      padding: const EdgeInsets.all(16.0),
-                      textStyle: const TextStyle(fontSize: 25),
-                    ),
-                    label: const Text('Relatórios'),
-                    icon: const Icon(Icons.add_chart),
-                    onPressed: () {}),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                TextButton.icon(
-                    style: TextButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
-                      padding: const EdgeInsets.all(16.0),
-                      textStyle: const TextStyle(fontSize: 25),
-                    ),
-                    label: const Text('Modúlo Cliente'),
-                    icon: const Icon(Icons.people_alt),
-                    onPressed: () {}),
-                TextButton.icon(
-                    style: TextButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
-                      padding: const EdgeInsets.all(16.0),
-                      textStyle: const TextStyle(fontSize: 25),
-                    ),
-                    label: const Text('Modúlo Pedido'),
-                    icon: const Icon(Icons.add_shopping_cart),
-                    onPressed: () {}),
-                TextButton.icon(
-                    style: TextButton.styleFrom(
-                      side: const BorderSide(width: 1.0),
-                      padding: const EdgeInsets.all(16.0),
-                      textStyle: const TextStyle(fontSize: 25),
-                    ),
-                    label: const Text('Fechar programa'),
-                    icon: const Icon(Icons.adjust),
-                    onPressed: () {}),
-              ],
-            ),
-          ],
+        body: DecoratedBox(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              opacity: 90,
+              image: AssetImage("assets/imagens/img.jpg"))
+
+           ),
+
+          child: TabBarView(
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                        side: const BorderSide(width: 1.0),
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 25),
+                      ),
+                      label: const Text('Modúlo Boné'),
+                      icon: const Icon(Icons.whatshot),
+                      onPressed: () {}),
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                        side: const BorderSide(width: 1.0),
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 25),
+                      ),
+                      label: const Text('Modúlo Fornecedor'),
+                      icon: const Icon(Icons.airport_shuttle),
+                      onPressed: () {}),
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                        side: const BorderSide(width: 1.0),
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 25),
+                      ),
+                      label: const Text('Modúlo Estoque'),
+                      icon: const Icon(Icons.all_inclusive),
+                      onPressed: () {}),
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                        side: const BorderSide(width: 1.0),
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 25),
+                      ),
+                      label: const Text('Relatórios'),
+                      icon: const Icon(Icons.add_chart),
+                      onPressed: () {}),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                        side: const BorderSide(width: 1.0),
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 25),
+                      ),
+                      label: const Text('Modúlo Cliente'),
+                      icon: const Icon(Icons.people_alt),
+                      onPressed: () {}),
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                        side: const BorderSide(width: 1.0),
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 25),
+                      ),
+                      label: const Text('Modúlo Pedido'),
+                      icon: const Icon(Icons.add_shopping_cart),
+                      onPressed: () {}),
+                  TextButton.icon(
+                      style: TextButton.styleFrom(
+                        side: const BorderSide(width: 1.0),
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 25),
+                      ),
+                      label: const Text('Fechar programa'),
+                      icon: const Icon(Icons.adjust),
+                      onPressed: () {}),
+                ],
+              ),
+            ],
+          ),
         ),
+    
       ),
     );
   }
