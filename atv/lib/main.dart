@@ -5,6 +5,10 @@ List<String> titles = <String>[
   'Cliente',
 ];
 
+final List imgs = [
+
+];
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -14,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorSchemeSeed: const Color.fromARGB(255, 54, 67, 75), useMaterial3: true),
+          colorSchemeSeed: const Color.fromARGB(255, 54, 67, 75),
+          useMaterial3: true),
       home: const SigHat(),
     );
   }
@@ -37,18 +42,19 @@ class SigHat extends StatelessWidget {
             return notification.depth == 1;
           },
           scrolledUnderElevation: 4.0,
-
-          backgroundColor: Colors.transparent, 
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color.fromRGBO(33, 150, 243, 0.6), Color.fromRGBO(3, 169, 244, 0.9)], 
-                  begin: Alignment.bottomLeft, 
-                  end: Alignment.topRight, 
-                ),
+          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(33, 150, 243, 0.6),
+                  Color.fromRGBO(3, 169, 244, 0.9)
+                ],
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
               ),
             ),
-
+          ),
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
@@ -62,7 +68,6 @@ class SigHat extends StatelessWidget {
             ],
           ),
         ),
-        
         body: Container(
           constraints: const BoxConstraints.expand(),
           decoration: BoxDecoration(
@@ -82,104 +87,99 @@ class SigHat extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
+
                   Flexible(
-                    child:
-                    TextButton.icon(
+
+                    
+                    child: TextButton.icon(
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey[400],
-                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 13),
                         ),
                         label: const Text('Modúlo Boné'),
                         icon: const Icon(Icons.whatshot),
                         onPressed: () {}),
-                        ),
-
-                  Flexible(
-                    child: 
-                      TextButton.icon(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.grey[400],
-                            padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
-                          ),
-                          label: const Text('Modúlo Fornecedor'),
-                          icon: const Icon(Icons.airport_shuttle),
-                          onPressed: () {}),
                   ),
-
                   Flexible(
-                    child:
-                      TextButton.icon(
+                    child: TextButton.icon(
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey[400],
-                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 13),
+                        ),
+                        label: const Text('Modúlo Fornecedor'),
+                        icon: const Icon(Icons.airport_shuttle),
+                        onPressed: () {}),
+                  ),
+                  Flexible(
+                    child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[400],
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 13),
                         ),
                         label: const Text('Modúlo Estoque'),
                         icon: const Icon(Icons.all_inclusive),
-                        onPressed: () {}
-                      ),
+                        onPressed: () {}),
                   ),
-
                   Flexible(
-                    child:
-                      TextButton.icon(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.grey[400],
-                            padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
-                          ),
-                          label: const Text('Relatórios'),
-                          icon: const Icon(Icons.add_chart),
-                          onPressed: () {}),
+                    child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[400],
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 13),
+                        ),
+                        label: const Text('Relatórios'),
+                        icon: const Icon(Icons.add_chart),
+                        onPressed: () {}),
                   ),
                 ],
               ),
-
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-
                   Flexible(
-                    child:
-                      TextButton.icon(
+                    child: TextButton.icon(
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey[400],
-                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 13),
                         ),
                         label: const Text('Modúlo Cliente'),
                         icon: const Icon(Icons.people_alt),
                         onPressed: () {}),
                   ),
-
                   Flexible(
-                    child:
-                      TextButton.icon(
+                    child: TextButton.icon(
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey[400],
-                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 13),
                         ),
                         label: const Text('Modúlo Pedido'),
                         icon: const Icon(Icons.add_shopping_cart),
                         onPressed: () {}),
-                    ),
-
-                  Flexible(
-                    child:
-                    TextButton.icon(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.grey[400],
-                        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
-                      ),
-                      label: const Text('Fechar programa'),
-                      icon: const Icon(Icons.adjust),
-                      onPressed: () {}),
                   ),
-
+                  Flexible(
+                    child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[400],
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 26, vertical: 13),
+                        ),
+                        label: const Text('Fechar programa'),
+                        icon: const Icon(Icons.adjust),
+                        onPressed: () {}),
+                  ),
                 ],
               ),
             ],
           ),
         ),
-    
       ),
     );
   }
+
 }
+
