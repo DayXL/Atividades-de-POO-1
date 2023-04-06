@@ -42,7 +42,7 @@ class SigHat extends StatelessWidget {
             flexibleSpace: Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color.fromRGBO(33, 150, 243, 0.6), Color.fromRGBO(3, 169, 244, 0.5)], 
+                  colors: [Color.fromRGBO(33, 150, 243, 0.6), Color.fromRGBO(3, 169, 244, 0.9)], 
                   begin: Alignment.bottomLeft, 
                   end: Alignment.topRight, 
                 ),
@@ -63,14 +63,19 @@ class SigHat extends StatelessWidget {
           ),
         ),
         
-        body: DecoratedBox(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              opacity: 90,
-              image: AssetImage("assets/imagens/img.jpg"),
-              fit: BoxFit.cover,)
-
-           ),
+        body: Container(
+          constraints: const BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.blue.withOpacity(0.6),
+                Colors.blue.withOpacity(1),
+              ],
+              stops: const [0.3, 1],
+            ),
+          ),
 
           child: TabBarView(
             children: <Widget>[
