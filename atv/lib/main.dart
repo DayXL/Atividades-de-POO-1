@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorSchemeSeed: const Color.fromRGBO(35, 34, 37, 1), useMaterial3: true),
+        colorSchemeSeed: const Color.fromARGB(255, 255, 255, 255), useMaterial3: true),
       home: const SigHat(),
     );
   }
@@ -37,7 +37,18 @@ class SigHat extends StatelessWidget {
             return notification.depth == 1;
           },
           scrolledUnderElevation: 4.0,
-          shadowColor: Theme.of(context).shadowColor,
+
+          backgroundColor: Colors.transparent, 
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color.fromRGBO(33, 150, 243, 0.6), Color.fromRGBO(3, 169, 244, 0.5)], 
+                  begin: Alignment.bottomLeft, 
+                  end: Alignment.topRight, 
+                ),
+              ),
+            ),
+
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
@@ -51,11 +62,13 @@ class SigHat extends StatelessWidget {
             ],
           ),
         ),
+        
         body: DecoratedBox(
           decoration: const BoxDecoration(
             image: DecorationImage(
               opacity: 90,
-              image: AssetImage("assets/imagens/img.jpg"))
+              image: AssetImage("assets/imagens/img.jpg"),
+              fit: BoxFit.cover,)
 
            ),
 
