@@ -1,3 +1,4 @@
+import 'package:atv/relatorios.dart';
 import 'package:flutter/material.dart';
 import 'modulBon.dart';
 import 'modulClt.dart';
@@ -130,7 +131,10 @@ class _SigHatState extends State<SigHat> {
                         ),
                         label: const Text('Modúlo Estoque'),
                         icon: const Icon(Icons.all_inclusive),
-                        onPressed: () {}),
+                        onPressed: () {
+                          
+
+                        }),
                   ),
                   Flexible(
                     child: TextButton.icon(
@@ -141,7 +145,12 @@ class _SigHatState extends State<SigHat> {
                         ),
                         label: const Text('Relatórios'),
                         icon: const Icon(Icons.add_chart),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ModulRlt()));
+                          
+                        }),
                   ),
                 ],
               ),
