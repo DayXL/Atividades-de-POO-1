@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorSchemeSeed: const Color.fromARGB(255, 255, 255, 255), useMaterial3: true),
+        colorSchemeSeed: const Color.fromARGB(255, 54, 67, 75), useMaterial3: true),
       home: const SigHat(),
     );
   }
@@ -82,74 +82,97 @@ class SigHat extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  TextButton.icon(
-                      style: TextButton.styleFrom(
-                        side: const BorderSide(width: 1.0),
-                        padding: const EdgeInsets.all(16.0),
-                        textStyle: const TextStyle(fontSize: 25),
+                  Flexible(
+                    child:
+                    TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[400],
+                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                        ),
+                        label: const Text('Modúlo Boné'),
+                        icon: const Icon(Icons.whatshot),
+                        onPressed: () {}),
+                        ),
+
+                  Flexible(
+                    child: 
+                      TextButton.icon(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[400],
+                            padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                          ),
+                          label: const Text('Modúlo Fornecedor'),
+                          icon: const Icon(Icons.airport_shuttle),
+                          onPressed: () {}),
+                  ),
+
+                  Flexible(
+                    child:
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[400],
+                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                        ),
+                        label: const Text('Modúlo Estoque'),
+                        icon: const Icon(Icons.all_inclusive),
+                        onPressed: () {}
                       ),
-                      label: const Text('Modúlo Boné'),
-                      icon: const Icon(Icons.whatshot),
-                      onPressed: () {}),
-                  TextButton.icon(
-                      style: TextButton.styleFrom(
-                        side: const BorderSide(width: 1.0),
-                        padding: const EdgeInsets.all(16.0),
-                        textStyle: const TextStyle(fontSize: 25),
-                      ),
-                      label: const Text('Modúlo Fornecedor'),
-                      icon: const Icon(Icons.airport_shuttle),
-                      onPressed: () {}),
-                  TextButton.icon(
-                      style: TextButton.styleFrom(
-                        side: const BorderSide(width: 1.0),
-                        padding: const EdgeInsets.all(16.0),
-                        textStyle: const TextStyle(fontSize: 25),
-                      ),
-                      label: const Text('Modúlo Estoque'),
-                      icon: const Icon(Icons.all_inclusive),
-                      onPressed: () {}),
-                  TextButton.icon(
-                      style: TextButton.styleFrom(
-                        side: const BorderSide(width: 1.0),
-                        padding: const EdgeInsets.all(16.0),
-                        textStyle: const TextStyle(fontSize: 25),
-                      ),
-                      label: const Text('Relatórios'),
-                      icon: const Icon(Icons.add_chart),
-                      onPressed: () {}),
+                  ),
+
+                  Flexible(
+                    child:
+                      TextButton.icon(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.grey[400],
+                            padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                          ),
+                          label: const Text('Relatórios'),
+                          icon: const Icon(Icons.add_chart),
+                          onPressed: () {}),
+                  ),
                 ],
               ),
+
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  TextButton.icon(
+
+                  Flexible(
+                    child:
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[400],
+                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                        ),
+                        label: const Text('Modúlo Cliente'),
+                        icon: const Icon(Icons.people_alt),
+                        onPressed: () {}),
+                  ),
+
+                  Flexible(
+                    child:
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey[400],
+                          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
+                        ),
+                        label: const Text('Modúlo Pedido'),
+                        icon: const Icon(Icons.add_shopping_cart),
+                        onPressed: () {}),
+                    ),
+
+                  Flexible(
+                    child:
+                    TextButton.icon(
                       style: TextButton.styleFrom(
-                        side: const BorderSide(width: 1.0),
-                        padding: const EdgeInsets.all(16.0),
-                        textStyle: const TextStyle(fontSize: 25),
-                      ),
-                      label: const Text('Modúlo Cliente'),
-                      icon: const Icon(Icons.people_alt),
-                      onPressed: () {}),
-                  TextButton.icon(
-                      style: TextButton.styleFrom(
-                        side: const BorderSide(width: 1.0),
-                        padding: const EdgeInsets.all(16.0),
-                        textStyle: const TextStyle(fontSize: 25),
-                      ),
-                      label: const Text('Modúlo Pedido'),
-                      icon: const Icon(Icons.add_shopping_cart),
-                      onPressed: () {}),
-                  TextButton.icon(
-                      style: TextButton.styleFrom(
-                        side: const BorderSide(width: 1.0),
-                        padding: const EdgeInsets.all(16.0),
-                        textStyle: const TextStyle(fontSize: 25),
+                        backgroundColor: Colors.grey[400],
+                        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 13),
                       ),
                       label: const Text('Fechar programa'),
                       icon: const Icon(Icons.adjust),
                       onPressed: () {}),
+                  ),
+
                 ],
               ),
             ],
