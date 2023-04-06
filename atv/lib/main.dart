@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'modulBon.dart';
 
 List<String> titles = <String>[
   'Administração',
   'Cliente',
 ];
 
-final List imgs = [
-
-];
+final List imgs = [];
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key?key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +30,10 @@ class SigHat extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _SigHatState createState() => _SigHatState();
-
 }
+
 class _SigHatState extends State<SigHat> {
-  
+
   @override
   Widget build(BuildContext context) {
     const int tabsCount = 2;
@@ -48,7 +47,6 @@ class _SigHatState extends State<SigHat> {
           notificationPredicate: (ScrollNotification notification) {
             return notification.depth == 1;
           },
-
           scrolledUnderElevation: 4.0,
           backgroundColor: Colors.transparent,
           flexibleSpace: Container(
@@ -63,7 +61,6 @@ class _SigHatState extends State<SigHat> {
               ),
             ),
           ),
-
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
@@ -90,16 +87,12 @@ class _SigHatState extends State<SigHat> {
               stops: const [0.3, 1],
             ),
           ),
-
           child: TabBarView(
             children: <Widget>[
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-
                   Flexible(
-
-                    
                     child: TextButton.icon(
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey[400],
@@ -108,8 +101,14 @@ class _SigHatState extends State<SigHat> {
                         ),
                         label: const Text('Modúlo Boné'),
                         icon: const Icon(Icons.whatshot),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ModulBon()));
+
+                        }),
                   ),
+
                   Flexible(
                     child: TextButton.icon(
                         style: TextButton.styleFrom(
@@ -191,4 +190,3 @@ class _SigHatState extends State<SigHat> {
   }
 
 }
-
