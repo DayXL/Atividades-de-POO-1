@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'modulBon.dart';
+import 'modulClt.dart';
 
 List<String> titles = <String>[
   'Administração',
@@ -156,7 +157,12 @@ class _SigHatState extends State<SigHat> {
                         ),
                         label: const Text('Modúlo Cliente'),
                         icon: const Icon(Icons.people_alt),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ModulClt()));
+
+                        }),
                   ),
                   Flexible(
                     child: TextButton.icon(
