@@ -12,7 +12,7 @@ final List imgs = [
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key?key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SigHat extends StatelessWidget {
-  const SigHat({super.key});
+class SigHat extends StatefulWidget {
+  const SigHat({Key? key}) : super(key: key);
 
+  @override
+  // ignore: library_private_types_in_public_api
+  _SigHatState createState() => _SigHatState();
+
+}
+class _SigHatState extends State<SigHat> {
+  
   @override
   Widget build(BuildContext context) {
     const int tabsCount = 2;
@@ -41,6 +48,7 @@ class SigHat extends StatelessWidget {
           notificationPredicate: (ScrollNotification notification) {
             return notification.depth == 1;
           },
+
           scrolledUnderElevation: 4.0,
           backgroundColor: Colors.transparent,
           flexibleSpace: Container(
@@ -55,6 +63,7 @@ class SigHat extends StatelessWidget {
               ),
             ),
           ),
+
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
