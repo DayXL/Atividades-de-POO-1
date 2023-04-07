@@ -53,107 +53,120 @@ class _ModulRltBonState extends State<ModulRltBon> {
             ),
           ),
 
-          child: DataTable( dataRowHeight: 200.0,
-            columns: const <DataColumn> [
-            DataColumn(
-              label: Expanded(
-                child: Text(
-                  'Código do Boné',
+          child: 
+            SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+
+            child:DataTable( dataRowHeight: 200.0,
+              columns: const <DataColumn> [
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Código do Boné',
+                  ),
                 ),
               ),
-            ),
 
-            DataColumn(
-              label: Expanded(
-                child: Text(
-                  'Nome do Boné',
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Nome do Boné',
+                  ),
                 ),
               ),
-            ),
 
-            DataColumn(
-              label: Expanded(
-                child: Text(
-                  'Quantidade por metro de tecido',
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Quantidade por metro de tecido',
+                  ),
                 ),
               ),
-            ),
 
-            DataColumn(
-              label: Expanded(
-                child: Text(
-                  'Imagem ilustrativa',
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Quantidade vendida',
+                  ),
                 ),
               ),
-            ),
 
-          ]
-          , 
-          rows: <DataRow> [
-            DataRow(
-              cells: <DataCell>[
-                const DataCell(Text('10000')),
-                const DataCell(Text('Boné liso')),
-                const DataCell(Text('5')),
-                DataCell(
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/imagens/Bone.png'),
-                        fit: BoxFit.cover,
+              DataColumn(
+                label: Expanded(
+                  child: Text(
+                    'Imagem ilustrativa',
+                  ),
+                ),
+              ),
+
+            ]
+            , 
+            rows: <DataRow> [
+              DataRow(
+                cells: <DataCell>[
+                  const DataCell(Text('10000')),
+                  const DataCell(Text('Boné liso')),
+                  const DataCell(Text('5')),
+                  const DataCell(Text('35')),
+                  DataCell(
+                    Container(
+                      height: 80,
+                      width: 80,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/imagens/Bone.png'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            DataRow(
-              cells: <DataCell>[
-                const DataCell(Text('10000')),
-                const DataCell(Text('Boné liso')),
-                const DataCell(Text('5')),
-                DataCell(
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/imagens/Bone.png'),
-                        fit: BoxFit.cover,
+              DataRow(
+                cells: <DataCell>[
+                  const DataCell(Text('10000')),
+                  const DataCell(Text('Boné liso')),
+                  const DataCell(Text('5')),
+                  const DataCell(Text('35')),
+                  DataCell(
+                    Container(
+                      height: 80,
+                      width: 80,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/imagens/Bone.png'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            DataRow(
-              cells: <DataCell>[
-                const DataCell(Text('10000')),
-                const DataCell(Text('Boné liso')),
-                const DataCell(Text('5')),
-                DataCell(
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/imagens/Bone.png'),
-                        fit: BoxFit.cover,
+              DataRow(
+                cells: <DataCell>[
+                  const DataCell(Text('10000')),
+                  const DataCell(Text('Boné liso')),
+                  const DataCell(Text('5')),
+                  const DataCell(Text('35')),
+                  DataCell(
+                    Container(
+                      height: 80,
+                      width: 80,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/imagens/Bone.png'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            
-          ],
+                ],
+              ),
 
-          
-          
+            ],  
+            ),
           ),
           
         ),
