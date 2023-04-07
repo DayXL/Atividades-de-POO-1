@@ -27,32 +27,27 @@ class NovTest extends StatefulWidget {
 class _NovTestState extends State<NovTest> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('SIG-HAT'),
-          notificationPredicate: (ScrollNotification notification) {
-            return notification.depth == 1;
-          },
-          scrolledUnderElevation: 4.0,
-          backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(33, 150, 243, 0.6),
-                  Color.fromRGBO(3, 169, 244, 0.9)
-                ],
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-              ),
-              
+      appBar: AppBar(
+        title: const Text('SIG-HAT'),
+        notificationPredicate: (ScrollNotification notification) {
+          return notification.depth == 1;
+        },
+        scrolledUnderElevation: 4.0,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromRGBO(33, 150, 243, 0.6),
+                Color.fromRGBO(3, 169, 244, 0.9)
+              ],
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
             ),
-       
-          ),   
-        
+          ),
         ),
-
+      ),
       bottomNavigationBar: const NewNavBar(
         icones: [
           Icons.home,
@@ -62,30 +57,46 @@ class _NovTestState extends State<NovTest> {
           Icons.abc,
           Icons.e_mobiledata,
         ],
-      ),
 
+        nomes: [
+          'Nome1',
+          'Nome2',
+          'Nome3',
+          'Nome4',
+          'Nome5',
+          'Nome6',
+
+        ],
+      ),
     );
   }
 }
 
-
 class NewNavBar extends StatelessWidget {
   final List<IconData> icones;
+  
+  final List<String> nomes;
 
-  const NewNavBar({super.key, required this.icones,});
+  const NewNavBar({super.key, required this.icones, required this.nomes});
 
   @override
   Widget build(BuildContext context) {
     List<Widget> iconButtons = [];
+    int cont = 0;
+
     icones.forEach((icon) {
       iconButtons.add(
         Flexible(
-          child: IconButton(
+          child: TextButton.icon(
             icon: Icon(icon),
+            label: Text(nomes[cont]),
             onPressed: () {},
+
           ),
         ),
       );
+
+      cont += 1;
     });
 
     return Row(
@@ -94,5 +105,3 @@ class NewNavBar extends StatelessWidget {
     );
   }
 }
-
-
