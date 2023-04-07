@@ -13,16 +13,10 @@ class _ModulBonState extends State<ModulBon> {
 
   @override
   Widget build(BuildContext context) {
-    const int tabsCount = 2;
 
-    return DefaultTabController(
-      length: tabsCount,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Modulo Boné'),
-          notificationPredicate: (ScrollNotification notification) {
-            return notification.depth == 1;
-          },
           scrolledUnderElevation: 4.0,
           backgroundColor: Colors.transparent,
           flexibleSpace: Container(
@@ -37,7 +31,6 @@ class _ModulBonState extends State<ModulBon> {
               ),
             ),
           ),
-
         ),
 
         body: Container(
@@ -109,8 +102,7 @@ class _ModulBonState extends State<ModulBon> {
           ),
           
         ),
-      ),
-    );
+      );
   }
 
 }

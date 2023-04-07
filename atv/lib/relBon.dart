@@ -12,11 +12,8 @@ class _ModulRltBonState extends State<ModulRltBon> {
 
   @override
   Widget build(BuildContext context) {
-    const int tabsCount = 2;
 
-    return DefaultTabController(
-      length: tabsCount,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Relatório de Bonés'),
           notificationPredicate: (ScrollNotification notification) {
@@ -170,7 +167,6 @@ class _ModulRltBonState extends State<ModulRltBon> {
           ),
           
         ),
-      ),
     );
   }
 
