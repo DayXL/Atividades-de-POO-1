@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'relBon.dart';
 
 class ModulRlt extends StatefulWidget {
   const ModulRlt({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _ModulRltState extends State<ModulRlt> {
       length: tabsCount,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Modulo Cliente'),
+          title: const Text('Modulo Relatorio'),
           notificationPredicate: (ScrollNotification notification) {
             return notification.depth == 1;
           },
@@ -64,8 +65,13 @@ class _ModulRltState extends State<ModulRlt> {
                     horizontal: 26, vertical: 13),
                 ),
                 label: const Text('Relatório de Boné'),
-                icon: const Icon(Icons.people_alt),
-                onPressed: () {}),
+                icon: const Icon(Icons.add_chart),
+                onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ModulRltBon()));
+
+                }),
               ),
 
               Flexible(
@@ -76,7 +82,7 @@ class _ModulRltState extends State<ModulRlt> {
                     horizontal: 26, vertical: 13),
                 ),
                 label: const Text('Relatório de Cliente'),
-                icon: const Icon(Icons.people_alt),
+                icon: const Icon(Icons.add_chart),
                 onPressed: () {}),
               ),
 
@@ -88,7 +94,7 @@ class _ModulRltState extends State<ModulRlt> {
                     horizontal: 26, vertical: 13),
                 ),
                 label: const Text('Relatório de Fornecedor'),
-                icon: const Icon(Icons.people_alt),
+                icon: const Icon(Icons.add_chart),
                 onPressed: () {}),
               ), 
 
@@ -100,7 +106,7 @@ class _ModulRltState extends State<ModulRlt> {
                     horizontal: 26, vertical: 13),
                 ),
                 label: const Text('Relatório de Estoque'),
-                icon: const Icon(Icons.people_alt),
+                icon: const Icon(Icons.add_chart),
                 onPressed: () {}),
               ), 
 
@@ -112,7 +118,7 @@ class _ModulRltState extends State<ModulRlt> {
                     horizontal: 26, vertical: 13),
                 ),
                 label: const Text('Relatório de Pedidos'),
-                icon: const Icon(Icons.people_alt),
+                icon: const Icon(Icons.add_chart),
                 onPressed: () {}),
               ), 
               
