@@ -53,7 +53,16 @@ class _ModulRltBonState extends State<ModulRltBon> {
             ),
           ),
 
-          child: DataTable( columns: const <DataColumn> [
+          child: DataTable( dataRowHeight: 200.0,
+            columns: const <DataColumn> [
+            DataColumn(
+              label: Expanded(
+                child: Text(
+                  'Código do Boné',
+                ),
+              ),
+            ),
+
             DataColumn(
               label: Expanded(
                 child: Text(
@@ -61,17 +70,89 @@ class _ModulRltBonState extends State<ModulRltBon> {
                 ),
               ),
             ),
+
+            DataColumn(
+              label: Expanded(
+                child: Text(
+                  'Quantidade por metro de tecido',
+                ),
+              ),
+            ),
+
+            DataColumn(
+              label: Expanded(
+                child: Text(
+                  'Imagem ilustrativa',
+                ),
+              ),
+            ),
+
           ]
           , 
-          rows: const <DataRow> [
+          rows: <DataRow> [
             DataRow(
               cells: <DataCell>[
-                DataCell(Text('Boné liso')),
-
+                const DataCell(Text('10000')),
+                const DataCell(Text('Boné liso')),
+                const DataCell(Text('5')),
+                DataCell(
+                  Container(
+                    height: 80,
+                    width: 80,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/imagens/Bone.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
 
+            DataRow(
+              cells: <DataCell>[
+                const DataCell(Text('10000')),
+                const DataCell(Text('Boné liso')),
+                const DataCell(Text('5')),
+                DataCell(
+                  Container(
+                    height: 80,
+                    width: 80,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/imagens/Bone.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            DataRow(
+              cells: <DataCell>[
+                const DataCell(Text('10000')),
+                const DataCell(Text('Boné liso')),
+                const DataCell(Text('5')),
+                DataCell(
+                  Container(
+                    height: 80,
+                    width: 80,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/imagens/Bone.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            
           ],
+
+          
           
           ),
           
