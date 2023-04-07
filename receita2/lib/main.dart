@@ -79,7 +79,7 @@ class NewNavBar extends StatelessWidget {
     List<Widget> iconButtons = [];
     icones.forEach((icon) {
       iconButtons.add(
-        Expanded(
+        Flexible(
           child: IconButton(
             icon: Icon(icon),
             onPressed: () {},
