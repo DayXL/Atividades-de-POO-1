@@ -57,7 +57,6 @@ class _NovTestState extends State<NovTest> {
           Icons.abc,
           Icons.e_mobiledata,
         ],
-
         nomes: [
           'Nome1',
           'Nome2',
@@ -65,8 +64,8 @@ class _NovTestState extends State<NovTest> {
           'Nome4',
           'Nome5',
           'Nome6',
-
         ],
+
       ),
     );
   }
@@ -74,10 +73,13 @@ class _NovTestState extends State<NovTest> {
 
 class NewNavBar extends StatelessWidget {
   final List<IconData> icones;
-  
+
   final List<String> nomes;
 
-  const NewNavBar({super.key, required this.icones, required this.nomes});
+  final local;
+
+  const NewNavBar(
+      {super.key, required this.icones, required this.nomes, this.local});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,6 @@ class NewNavBar extends StatelessWidget {
             icon: Icon(icon),
             label: Text(nomes[cont]),
             onPressed: () {},
-
           ),
         ),
       );
@@ -99,9 +100,18 @@ class NewNavBar extends StatelessWidget {
       cont += 1;
     });
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: iconButtons,
-    );
+    if (local == 'Coluna') {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: iconButtons,
+      );
+    }
+
+    else {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: iconButtons,
+      );
+    }
   }
 }
