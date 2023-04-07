@@ -129,8 +129,8 @@ class MeusBotoes extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 26, vertical: 13),
                   ),
-                  label: const Text('Modúlo OS'),
-                  icon: const Icon(Icons.apartment),
+                  label: const Text('Fechar programa'),
+                  icon: const Icon(Icons.rectangle_rounded),
                   onPressed: () {}),
             ),
           ],
