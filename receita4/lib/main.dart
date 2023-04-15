@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+var dataObjects = [
+
+  "La Fin Du Monde - Bock - 65 ibu",
+
+  "Sapporo Premiume - Sour Ale - 54 ibu",
+
+  "Duvel - Pilsner - 82 ibu"
+
+];
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -12,6 +22,7 @@ class MyApp extends StatelessWidget {
           colorSchemeSeed: const Color.fromARGB(255, 54, 67, 75),
           useMaterial3: true),
       home: const NovTest(),
+      
     );
   }
 }
@@ -48,6 +59,9 @@ class _NovTestState extends State<NovTest> {
           ),
         ),
       ),
+
+      body: DataBodyWidget(objects: dataObjects),
+
       bottomNavigationBar: const NewNavBar(
         icones: [
           Icons.home,
@@ -57,6 +71,7 @@ class _NovTestState extends State<NovTest> {
           Icons.abc,
           Icons.e_mobiledata,
         ],
+
         nomes: [
           'Nome1',
           'Nome2',
@@ -114,4 +129,45 @@ class NewNavBar extends StatelessWidget {
       );
     }
   }
+}
+
+
+class DataBodyWidget extends StatelessWidget {
+
+  List<String> objects;
+
+  DataBodyWidget( {super.key, this.objects = const [] });
+
+  @override
+
+  Widget build(BuildContext context) {
+
+    return DataTable(
+
+      columns: const [
+
+        DataColumn(label: Expanded(
+
+          child: Text("Descrição", style: TextStyle(fontStyle: FontStyle.italic)),
+
+        ))
+
+      ],
+
+      rows: objects.map( 
+
+        (obj) => DataRow(
+
+          cells:[
+
+            DataCell(Text(obj))
+
+            ] 
+
+          )
+
+        ).toList());
+
+  }
+
 }
