@@ -24,9 +24,25 @@ class MyApp extends StatelessWidget {
 
         ),
 
-        body: DataBodyWidget(),
+        body: DataBodyWidget(objects:const [
 
-        bottomNavigationBar: NewNavBar(),
+          "La Fin Du Monde - Bock - 65 ibu",
+
+          "Sapporo Premiume - Sour Ale - 54 ibu",
+
+          "Duvel - Pilsner - 82 ibu"
+
+        ]),
+
+        bottomNavigationBar: NewNavBar(icones:const [
+          Icons.home,
+          Icons.search,
+          Icons.favorite,
+          Icons.settings,
+          Icons.abc,
+          Icons.e_mobiledata,
+
+        ]),
 
     ));
 
@@ -34,39 +50,28 @@ class MyApp extends StatelessWidget {
 
 }
 
-
-
 class NewNavBar extends StatelessWidget {
 
-  NewNavBar();
+  List<IconData> icones;
 
-  void botaoFoiTocado(int index) {
-
-    print("Tocaram no botão $index");
-
-  }
+  NewNavBar({super.key, this.icones = const [] });
 
   @override
 
   Widget build(BuildContext context) {
 
-    return BottomNavigationBar(onTap: botaoFoiTocado, items: const [
+    return Row(children: icones.map( 
 
-      BottomNavigationBarItem(
+      (obj) => Expanded(
 
-        label: "Cafés",
+        child: IconButton(
+            icon: Icon(obj),
+            onPressed: () {},
+          ),
 
-        icon: Icon(Icons.coffee_outlined),
+        )
 
-      ),
-
-      BottomNavigationBarItem(
-
-          label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
-
-      BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
-
-    ]);
+      ).toList());
 
   }
 
@@ -76,33 +81,33 @@ class NewNavBar extends StatelessWidget {
 
 class DataBodyWidget extends StatelessWidget {
 
-  DataBodyWidget();
+ List<String> objects;
+
+  DataBodyWidget( {this.objects = const [] });
+
+  Expanded processarUmElemento(String obj){
+
+    return Expanded(                
+
+          child: Center(child: Text(obj)),
+
+        );
+
+  }
 
   @override
 
   Widget build(BuildContext context) {
 
-    return Column(children: [
+    return Column(children: objects.map( 
 
-      Expanded(
+      (obj) => Expanded(
 
-        child: Text("La Fin Du Monde - Bock - 65 ibu"),
+        child: Center(child: Text(obj)),
 
-      ),
+        )
 
-      Expanded(
-
-        child: Text("Sapporo Premiume - Sour Ale - 54 ibu"),
-
-      ),
-
-      Expanded(
-
-        child: Text("Duvel - Pilsner - 82 ibu"),
-
-      )
-
-    ]);
+      ).toList());
 
   }
 
