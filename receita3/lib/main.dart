@@ -19,10 +19,36 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
 
         appBar: AppBar(
+          title: const Text(
+            "Dicas",
+          ),
 
-          title: const Text("Dicas"),
+          actions: [
+            PopupMenuButton(
+              icon: const Icon(Icons.more_vert),
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem(
+                    child: Icon(Icons.search, color: Colors.black,),
+                  ),
 
+                  const PopupMenuItem(
+                    child: Icon(Icons.upload, color: Colors.black,),
+                  ),
+
+                  const PopupMenuItem(
+                    child: Icon(Icons.exit_to_app, color: Colors.black,),
+                  ),
+
+                ];
+              },
+            )
+          ],
+
+          
         ),
+        
+        
 
         body: DataBodyWidget(objects:const [
 
@@ -112,3 +138,4 @@ class DataBodyWidget extends StatelessWidget {
   }
 
 }
+
