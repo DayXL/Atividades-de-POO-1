@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,39 +16,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       home: Scaffold(
-
-        appBar: AppBar(
-          title: const Text(
-            "Dicas",
-          ),
-
-          actions: [
-            PopupMenuButton(
-              icon: const Icon(Icons.more_vert),
-              itemBuilder: (context) {
-                return [
-                  const PopupMenuItem(
-                    child: Icon(Icons.search, color: Colors.black,),
-                  ),
-
-                  const PopupMenuItem(
-                    child: Icon(Icons.upload, color: Colors.black,),
-                  ),
-
-                  const PopupMenuItem(
-                    child: Icon(Icons.exit_to_app, color: Colors.black,),
-                  ),
-
-                ];
-              },
-            )
-          ],
-
-          
+        
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: MyAppBar(),
         ),
         
-        
-
         body: DataBodyWidget(objects:const [
 
           "La Fin Du Monde - Bock - 65 ibu",
@@ -103,8 +75,6 @@ class NewNavBar extends StatelessWidget {
 
 }
 
-
-
 class DataBodyWidget extends StatelessWidget {
 
  List<String> objects;
@@ -139,3 +109,40 @@ class DataBodyWidget extends StatelessWidget {
 
 }
 
+class MyAppBar extends StatelessWidget {
+  const MyAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: const Text("Dicas"),
+      actions: [
+        PopupMenuButton(
+          icon: const Icon(Icons.more_vert),
+          itemBuilder: (context) {
+            return [
+              const PopupMenuItem(
+                child: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
+              ),
+              const PopupMenuItem(
+                child: Icon(
+                  Icons.upload,
+                  color: Colors.black,
+                ),
+              ),
+              const PopupMenuItem(
+                child: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.black,
+                ),
+              ),
+            ];
+          },
+        )
+      ],
+    );
+  }
+}
