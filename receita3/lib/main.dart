@@ -17,11 +17,13 @@ class MyApp extends StatelessWidget {
             preferredSize: Size.fromHeight(kToolbarHeight),
             child: MyAppBar(),
           ),
+
           body: DataBodyWidget(objects: const [
             "La Fin Du Monde - Bock - 65 ibu",
             "Sapporo Premiume - Sour Ale - 54 ibu",
             "Duvel - Pilsner - 82 ibu"
           ]),
+          
           bottomNavigationBar: NewNavBar(icones: const [
             Icons.home,
             Icons.search,
@@ -88,22 +90,31 @@ class MyAppBar extends StatelessWidget {
           itemBuilder: (context) {
             return criarPopupItens(icones);
           },
-          color: const Color.fromARGB(255, 194, 167, 240),
         )
       ],
     );
   }
 
   List<PopupMenuItem<IconData>> criarPopupItens(List<IconData> icones) {
-    return icones
-        .map((icone) => PopupMenuItem(
-              value: icone,
-              child: Row(
-                children: [
-                  Icon(icone, color: Colors.black),
-                ],
-              ),
-            ))
-        .toList();
+    return icones.map((icone) {
+      Color cor = Colors.black;
+      if (icone == Icons.search) {
+        cor = Colors.blue;
+      } else if (icone == Icons.upload) {
+        cor = Colors.red;
+      } else if (icone == Icons.exit_to_app) {
+        cor = Colors.green;
+      } 
+
+    return PopupMenuItem(
+      value: icone,
+      child: Row(
+        children: [
+          Icon(icone, color: cor),
+        ],
+      ),
+    );
+  }).toList();
   }
+  
 }
