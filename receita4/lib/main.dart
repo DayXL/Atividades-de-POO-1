@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 List<IconData> icones = [Icons.search, Icons.upload, Icons.exit_to_app];
 
+var dataObjects = [
+  "La Fin Du Monde - Bock - 65 ibu",
+  "Sapporo Premiume - Sour Ale - 54 ibu",
+  "Duvel - Pilsner - 82 ibu"
+];
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,21 +23,8 @@ class MyApp extends StatelessWidget {
             preferredSize: Size.fromHeight(kToolbarHeight),
             child: MyAppBar(),
           ),
-
-          body: DataBodyWidget(objects: const [
-            "La Fin Du Monde - Bock - 65 ibu",
-            "Sapporo Premiume - Sour Ale - 54 ibu",
-            "Duvel - Pilsner - 82 ibu"
-          ]),
-          
-          bottomNavigationBar: NewNavBar(icones: const [
-            Icons.home,
-            Icons.search,
-            Icons.favorite,
-            Icons.settings,
-            Icons.abc,
-            Icons.e_mobiledata,
-          ]),
+          body: DataBodyWidget(objects: dataObjects),
+          bottomNavigationBar: NewNavBar(icones: icones),
         ));
   }
 }
@@ -104,17 +97,16 @@ class MyAppBar extends StatelessWidget {
         cor = Colors.red;
       } else if (icone == Icons.exit_to_app) {
         cor = Colors.green;
-      } 
+      }
 
-    return PopupMenuItem(
-      value: icone,
-      child: Row(
-        children: [
-          Icon(icone, color: cor),
-        ],
-      ),
-    );
-  }).toList();
+      return PopupMenuItem(
+        value: icone,
+        child: Row(
+          children: [
+            Icon(icone, color: cor),
+          ],
+        ),
+      );
+    }).toList();
   }
-  
 }
