@@ -1,173 +1,120 @@
 import 'package:flutter/material.dart';
 
-var dataObjects = [
-
-  "La Fin Du Monde - Bock - 65 ibu",
-
-  "Sapporo Premiume - Sour Ale - 54 ibu",
-
-  "Duvel - Pilsner - 82 ibu"
-
-];
+List<IconData> icones = [Icons.search, Icons.upload, Icons.exit_to_app];
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          colorSchemeSeed: const Color.fromARGB(255, 54, 67, 75),
-          useMaterial3: true),
-      home: const NovTest(),
-      
-    );
-  }
-}
-
-class NovTest extends StatefulWidget {
-  const NovTest({Key? key}) : super(key: key);
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _NovTestState createState() => _NovTestState();
-}
-
-class _NovTestState extends State<NovTest> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SIG-HAT'),
-        notificationPredicate: (ScrollNotification notification) {
-          return notification.depth == 1;
-        },
-        scrolledUnderElevation: 4.0,
-        backgroundColor: Colors.transparent,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(33, 150, 243, 0.6),
-                Color.fromRGBO(3, 169, 244, 0.9)
-              ],
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-            ),
+        theme: ThemeData(primarySwatch: Colors.deepPurple),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(kToolbarHeight),
+            child: MyAppBar(),
           ),
-        ),
-      ),
 
-      body: DataBodyWidget(objects: dataObjects),
-
-      bottomNavigationBar: const NewNavBar(
-        icones: [
-          Icons.home,
-          Icons.search,
-          Icons.favorite,
-          Icons.settings,
-          Icons.abc,
-          Icons.e_mobiledata,
-        ],
-
-        nomes: [
-          'Nome1',
-          'Nome2',
-          'Nome3',
-          'Nome4',
-          'Nome5',
-          'Nome6',
-        ],
-
-      ),
-    );
+          body: DataBodyWidget(objects: const [
+            "La Fin Du Monde - Bock - 65 ibu",
+            "Sapporo Premiume - Sour Ale - 54 ibu",
+            "Duvel - Pilsner - 82 ibu"
+          ]),
+          
+          bottomNavigationBar: NewNavBar(icones: const [
+            Icons.home,
+            Icons.search,
+            Icons.favorite,
+            Icons.settings,
+            Icons.abc,
+            Icons.e_mobiledata,
+          ]),
+        ));
   }
 }
 
 class NewNavBar extends StatelessWidget {
-  final List<IconData> icones;
+  List<IconData> icones;
 
-  final List<String> nomes;
-
-  final local;
-
-  const NewNavBar(
-      {super.key, required this.icones, required this.nomes, this.local});
+  NewNavBar({super.key, this.icones = const []});
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> iconButtons = [];
-    int cont = 0;
-
-    icones.forEach((icon) {
-      iconButtons.add(
-        Flexible(
-          child: TextButton.icon(
-            icon: Icon(icon),
-            label: Text(nomes[cont]),
-            onPressed: () {},
-          ),
-        ),
-      );
-
-      cont += 1;
-    });
-
-    if (local == 'Coluna') {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: iconButtons,
-      );
-    }
-
-    else {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: iconButtons,
-      );
-    }
+    return Row(
+        children: icones
+            .map((obj) => Expanded(
+                  child: IconButton(
+                    icon: Icon(obj),
+                    onPressed: () {},
+                  ),
+                ))
+            .toList());
   }
 }
 
-
 class DataBodyWidget extends StatelessWidget {
-
   List<String> objects;
 
-  DataBodyWidget( {super.key, this.objects = const [] });
+  DataBodyWidget({this.objects = const []});
 
-  @override
-
-  Widget build(BuildContext context) {
-
-    return DataTable(
-
-      columns: const [
-
-        DataColumn(label: Expanded(
-
-          child: Text("Descrição", style: TextStyle(fontStyle: FontStyle.italic)),
-
-        ))
-
-      ],
-
-      rows: objects.map( 
-
-        (obj) => DataRow(
-
-          cells:[
-
-            DataCell(Text(obj))
-
-            ] 
-
-          )
-
-        ).toList());
-
+  Expanded processarUmElemento(String obj) {
+    return Expanded(
+      child: Center(child: Text(obj)),
+    );
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        children: objects
+            .map((obj) => Expanded(
+                  child: Center(child: Text(obj)),
+                ))
+            .toList());
+  }
+}
+
+class MyAppBar extends StatelessWidget {
+  const MyAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: const Text("Dicas"),
+      actions: [
+        PopupMenuButton(
+          icon: const Icon(Icons.more_vert),
+          itemBuilder: (context) {
+            return criarPopupItens(icones);
+          },
+        )
+      ],
+    );
+  }
+
+  List<PopupMenuItem<IconData>> criarPopupItens(List<IconData> icones) {
+    return icones.map((icone) {
+      Color cor = Colors.black;
+      if (icone == Icons.search) {
+        cor = Colors.blue;
+      } else if (icone == Icons.upload) {
+        cor = Colors.red;
+      } else if (icone == Icons.exit_to_app) {
+        cor = Colors.green;
+      } 
+
+    return PopupMenuItem(
+      value: icone,
+      child: Row(
+        children: [
+          Icon(icone, color: cor),
+        ],
+      ),
+    );
+  }).toList();
+  }
+  
 }
