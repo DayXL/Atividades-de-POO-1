@@ -42,6 +42,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   final _confirmPasswordController = TextEditingController();
   File? _selectedImage;
   double _value = 0.0;
+  bool _acceptTerms = false;
 
   Future<void> _pickImage() async {
     final result = await FilePicker.platform.pickFiles(
@@ -312,6 +313,18 @@ class MyCustomFormState extends State<MyCustomForm> {
                     ? const Text('Selecione uma imagem')
                     : Text(_selectedImage!.path),
                 ),),
+
+                Flexible( fit: FlexFit.loose,
+                  child: CheckboxListTile(                   
+                    value: _acceptTerms,
+                    title: const Text('Aceito os termos e condições'),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _acceptTerms = newValue ?? false;
+                      });
+                    },
+                  ),
+                ),
           
                 Flexible(fit: FlexFit.loose,
                 child: Padding(
@@ -356,6 +369,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     
                   ),
                 ),
+                
               ],
             ),
           ), 
