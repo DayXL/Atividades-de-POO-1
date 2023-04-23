@@ -36,6 +36,35 @@ class MyCustomFormState extends State<MyCustomForm> {
   DateTime? _selectedDate;
   String _selectedGender = 'Homem';
   String selecionarEstado = 'Solteiro';
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Digite uma senha';
+    }
+    if (value.length < 8) {
+      return 'Senha deve ter pelo menos 8 caracteres';
+    }
+    return null;
+  }
+
+  String? _validateConfirmPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Confirme sua senha';
+    }
+    if (value != _passwordController.text) {
+      return 'Senhas não coincidem';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,6 +184,30 @@ class MyCustomFormState extends State<MyCustomForm> {
               );
             }).toList(),
           ),
+
+          TextFormField(
+            decoration: const InputDecoration(  
+              icon: Icon(Icons.lock),  
+              hintText: 'Digite sua senha',  
+              labelText: 'Senha',  
+            ),  
+
+            obscureText: true, 
+            controller: _passwordController,
+            validator: _validatePassword,   
+          ),
+
+          TextFormField(
+            decoration: const InputDecoration(  
+              icon: Icon(Icons.lock),  
+              hintText: 'Confirme sua senha',  
+              labelText: 'Confirme a senha',  
+            ),  
+
+            obscureText: true, 
+            controller: _confirmPasswordController,
+            validator: _validateConfirmPassword,   
+          ),
          
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -174,8 +227,6 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
         ],
-
-
       ),
     );
   }
