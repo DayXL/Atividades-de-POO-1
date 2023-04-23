@@ -85,10 +85,8 @@ class DataBodyWidget extends StatelessWidget {
   final List<String> columnNames;
   final List<String> propertyNames;
 
-  DataBodyWidget(
-      {required this.objects,
-      required this.columnNames,
-      required this.propertyNames});
+  DataBodyWidget({required this.objects,required this.columnNames,
+  required this.propertyNames});
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +97,9 @@ class DataBodyWidget extends StatelessWidget {
                 .map((name) => DataColumn(
                     label: Flexible(
                         child: Text(name,
-                            style:
-                                const TextStyle(fontStyle: FontStyle.italic)))))
-                .toList(),
+                          style:
+                            const TextStyle(fontStyle: FontStyle.italic))))).toList(),
+                            
             rows: objects
                 .map((obj) => DataRow(
                     cells: propertyNames
