@@ -3,92 +3,22 @@ import 'package:flutter/material.dart';
 List<IconData> icones = [Icons.search, Icons.upload, Icons.exit_to_app];
 
 var dataObjects = [
-  {
-    "name": "La Fin Du Monde",
-    "style": "Bock",
-    "ibu": "65"
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Duvel", 
-    "style": "Pilsner", 
-    "ibu": "82"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
+  {"name": "La Fin Du Monde", "style": "Bock", "ibu": "65"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Duvel", "style": "Pilsner", "ibu": "82"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
 ];
+
+var coluna = ["Nome", "Estilo", "Ibu"];
+
+var propiedades = ["name", "style", "ibu"];
 
 void main() => runApp(const MyApp());
 
@@ -105,7 +35,7 @@ class MyApp extends StatelessWidget {
             preferredSize: Size.fromHeight(kToolbarHeight),
             child: MyAppBar(),
           ),
-          body: DataBodyWidget(objects: dataObjects),
+          body: DataBodyWidget(objects: dataObjects, columnNames: coluna, propertyNames: propiedades,),
           bottomNavigationBar: NewNavBar(icones: icones),
         ));
   }
@@ -131,36 +61,33 @@ class NewNavBar extends StatelessWidget {
 }
 
 class DataBodyWidget extends StatelessWidget {
-  List objects;
+  final List<Map<String, dynamic>> objects;
+  final List<String> columnNames;
+  final List<String> propertyNames;
 
-  DataBodyWidget({this.objects = const []});
+  DataBodyWidget(
+      {required this.objects,
+      required this.columnNames,
+      required this.propertyNames});
 
   @override
   Widget build(BuildContext context) {
-    var columnNames = ["Nome","Estilo","IBU"],
-
-    propertyNames = ["name", "style", "ibu"];
-
     return Center(
       child: SingleChildScrollView(
         child: DataTable(
-          columns: columnNames.map( 
-            (name) => DataColumn(
-              label: Flexible(
-                child: Text(name, style: const TextStyle(fontStyle: FontStyle.italic))
-              )
-      
-            )).toList(),
-      
-          rows: objects.map( 
-            (obj) => DataRow(
-              cells:propertyNames.map(
-                  (propName) => DataCell(Text(obj[propName]))
-                  
-                ).toList()
-              )
-      
-            ).toList()),
+            columns: columnNames
+                .map((name) => DataColumn(
+                    label: Flexible(
+                        child: Text(name,
+                            style:
+                                const TextStyle(fontStyle: FontStyle.italic)))))
+                .toList(),
+            rows: objects
+                .map((obj) => DataRow(
+                    cells: propertyNames
+                        .map((propName) => DataCell(Text(obj[propName])))
+                        .toList()))
+                .toList()),
       ),
     );
   }
