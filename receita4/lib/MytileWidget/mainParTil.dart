@@ -2,93 +2,117 @@ import 'package:flutter/material.dart';
 
 List<IconData> icones = [Icons.search, Icons.upload, Icons.exit_to_app];
 
+// var dataObjects = [
+//   {
+//     "name": "La Fin Du Monde",
+//     "style": "Bock",
+//     "ibu": "65"
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Duvel", 
+//     "style": "Pilsner", 
+//     "ibu": "82"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+
+//   {
+
+//     "name": "Sapporo Premiume",
+//     "style": "Sour Ale",
+//     "ibu": "54"
+
+//   },
+// ];
+
+// var coluna = ["Nome", "Estilo", "Ibu"];
+
+// var propiedades = ["name", "style", "ibu"];
+
 var dataObjects = [
-  {
-    "name": "La Fin Du Monde",
-    "style": "Bock",
-    "ibu": "65"
-  },
+  {"name": "Arco-Iris", "idade": "2", "cor": "Laranja, preto e branco", "comidaPref": "Peixe"},
+  {"name": "BlackTwo", "idade": "1.5", "cor": "Verde rajado", "comidaPref": "Peixe"},
+  {"name": "Frajolina ", "idade": "3", "cor": "Verde rajado claro", "comidaPref": "Peixe"},
+  {"name": "FrajoTwo", "idade": "1.5", "cor": "Verde rajado e branco", "comidaPref": "Peixe"},
+  {"name": "Jaréu", "idade": "2", "cor": "Cinza", "comidaPref": "Peixe"},
+  {"name": "Pierre", "idade": "5", "cor": "Verde rajado e branco", "comidaPref": "Peixe"},
+  {"name": "Arco-Iris", "idade": "2", "cor": "Laranja, preto e branco", "comidaPref": "Peixe"},
+  {"name": "BlackTwo", "idade": "1.5", "cor": "Verde rajado", "comidaPref": "Peixe"},
+  {"name": "Frajolina ", "idade": "3", "cor": "Verde rajado claro", "comidaPref": "Peixe"},
+  {"name": "FrajoTwo", "idade": "1.5", "cor": "Verde rajado e branco", "comidaPref": "Peixe"},
+  {"name": "Jaréu", "idade": "2", "cor": "Cinza", "comidaPref": "Peixe"},
+  {"name": "Pierre", "idade": "5", "cor": "Verde rajado e branco", "comidaPref": "Peixe"},
 
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Duvel", 
-    "style": "Pilsner", 
-    "ibu": "82"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
-
-  {
-
-    "name": "Sapporo Premiume",
-    "style": "Sour Ale",
-    "ibu": "54"
-
-  },
 ];
+
+var coluna = ["Nome", "Idade", "Cor", "Comida preferida"];
+
+var propiedades = ["name", "idade", "cor", "comidaPref" ];
 
 void main() => runApp(const MyApp());
 
@@ -105,7 +129,7 @@ class MyApp extends StatelessWidget {
             preferredSize: Size.fromHeight(kToolbarHeight),
             child: MyAppBar(),
           ),
-          body: MytileWidget(objects: dataObjects),
+          body: MytileWidget(objects: dataObjects, columnNames: coluna, propertyNames: propiedades,),
           bottomNavigationBar: NewNavBar(icones: icones),
         ));
   }
@@ -127,42 +151,6 @@ class NewNavBar extends StatelessWidget {
                   ),
                 ))
             .toList());
-  }
-}
-
-class DataBodyWidget extends StatelessWidget {
-  List objects;
-
-  DataBodyWidget({this.objects = const []});
-
-  @override
-  Widget build(BuildContext context) {
-    var columnNames = ["Nome","Estilo","IBU"],
-
-    propertyNames = ["name", "style", "ibu"];
-
-    return Center(
-      child: SingleChildScrollView(
-        child: DataTable(
-          columns: columnNames.map( 
-            (name) => DataColumn(
-              label: Flexible(
-                child: Text(name, style: const TextStyle(fontStyle: FontStyle.italic))
-              )
-      
-            )).toList(),
-      
-          rows: objects.map( 
-            (obj) => DataRow(
-              cells:propertyNames.map(
-                  (propName) => DataCell(Text(obj[propName]))
-                  
-                ).toList()
-              )
-      
-            ).toList()),
-      ),
-    );
   }
 }
 
@@ -209,30 +197,28 @@ class MyAppBar extends StatelessWidget {
 
 class MytileWidget extends StatelessWidget {
   final List<Map<String, dynamic>> objects;
+  final List<String> columnNames;
+  final List<String> propertyNames;
   
-  MytileWidget({required this.objects});
+  MytileWidget({required this.objects, required this.columnNames,
+  required this.propertyNames});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+     return ListView(
       children: [
         ListTile(
-          title: const Text('Nome'),
+          title: Text(columnNames[0]),
           subtitle: Row(
-            children: const [
-              Expanded(child: Text('Estilo')),
-              Text('IBU'),
-            ],
+            children: List.generate(columnNames.length - 1, (index) => Expanded(child: Text(columnNames[index+1]))).toList(),
           ),
         ),
-
-        ...dataObjects.map((obj) => ListTile(
-          title: Text(obj['name']!),
+        
+        //O operador spread ... é usado para criar uma lista de tiles a partir da lista de objetos.
+        ...objects.map((obj) => ListTile(
+          title: Text(obj[propertyNames[0]].toString()),
           subtitle: Row(
-            children: [
-              Expanded(child: Text(obj['style']!)),
-              Text(obj['ibu'].toString()),
-            ],
+            children: List.generate(propertyNames.length - 1, (index) => Expanded(child: Text(obj[propertyNames[index+1]].toString()))).toList(),
           ),
         )).toList(),
       ],
