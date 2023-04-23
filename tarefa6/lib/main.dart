@@ -34,6 +34,8 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   final _formKey = GlobalKey<FormState>();
   DateTime? _selectedDate;
+  String _selectedGender = 'Homem';
+  String selecionarEstado = 'Solteiro';
 
   @override
   Widget build(BuildContext context) {
@@ -109,8 +111,51 @@ class MyCustomFormState extends State<MyCustomForm> {
               ),
             ),
           ),
+
+          DropdownButtonFormField<String>(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.people),
+              hintText: 'Selecione seu gênero',
+              labelText: 'Gênero',
+            ),
+            value: _selectedGender,
+            onChanged: (newValue) {
+              setState(() {
+                _selectedGender = newValue!;
+              });
+            },
+            items: <String>['Homem', 'Mulher', 'Outro']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+
+          DropdownButtonFormField<String>(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.people),
+              hintText: 'Selecione seu estado civil',
+              labelText: 'Estado civil',
+            ),
+
+            value: selecionarEstado,
+            onChanged: (newValue) {
+              setState(() {
+                selecionarEstado = newValue!;
+              });
+            },
+
+            items: <String>['Solteiro', 'Casado', 'Divorciado', 'Viúvo', 'Outro']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
          
-    
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
       
