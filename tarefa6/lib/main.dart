@@ -91,7 +91,8 @@ class MyCustomFormState extends State<MyCustomForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
+          Flexible(
+            fit: FlexFit.loose,
             child: TextFormField(
               decoration: const InputDecoration(  
                 icon: Icon(Icons.person),  
@@ -109,7 +110,8 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Expanded(
+          Flexible(
+            fit: FlexFit.loose,
             child: TextFormField(
               decoration: const InputDecoration(  
                 icon: Icon(Icons.phone),  
@@ -127,7 +129,8 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Expanded(
+          Flexible(
+            fit: FlexFit.loose,
             child: GestureDetector(
               onTap: () {
                 DatePicker.showDatePicker(
@@ -165,7 +168,8 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Expanded(
+          Flexible(
+            fit: FlexFit.loose,
             child: DropdownButtonFormField<String>(
               decoration: const InputDecoration(
                 icon: Icon(Icons.people),
@@ -188,7 +192,8 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Expanded(
+          Flexible(
+            fit: FlexFit.loose,
             child: DropdownButtonFormField<String>(
               decoration: const InputDecoration(
                 icon: Icon(Icons.people),
@@ -213,7 +218,8 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Expanded(
+          Flexible(
+            fit: FlexFit.loose,
             child: SliderTheme(
               data: const SliderThemeData(
                 valueIndicatorTextStyle: TextStyle(
@@ -229,7 +235,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                       fontSize: 12,
                     ),
                   ),
-                  Expanded(
+                  Flexible(
+                    fit: FlexFit.loose,
                     child: Slider(
                       value: _value,
                       min: 0,
@@ -248,7 +255,9 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Expanded(
+          Row(children: [
+            Flexible(
+            fit: FlexFit.loose,
             child: TextFormField(
               decoration: const InputDecoration(  
                 icon: Icon(Icons.lock),  
@@ -260,67 +269,78 @@ class MyCustomFormState extends State<MyCustomForm> {
               controller: _passwordController,
               validator: _validatePassword,   
             ),
-          ),
-
-          Expanded(
-            child: TextFormField(
-              decoration: const InputDecoration(  
-                icon: Icon(Icons.lock),  
-                hintText: 'Confirme sua senha',  
-                labelText: 'Confirme a senha',  
-              ),  
-          
-              obscureText: true, 
-              controller: _confirmPasswordController,
-              validator: _validateConfirmPassword,   
             ),
-          ),
-         
-          Expanded(child: TextButton(
-            onPressed: _pickImage,
-            child: _selectedImage == null
-                ? const Text('Selecione uma imagem')
-                : Text(_selectedImage!.path),
-          ),),
 
+            Flexible(
+              fit: FlexFit.loose,
+              child: TextFormField(
+                decoration: const InputDecoration(  
+                  icon: Icon(Icons.lock),  
+                  hintText: 'Confirme sua senha',  
+                  labelText: 'Confirme a senha',  
+                ),  
+            
+                obscureText: true, 
+                controller: _confirmPasswordController,
+                validator: _validateConfirmPassword,   
+              ),
+            ),
+
+          ],),
+     
           Row(
-            children: [Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                  
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processando')),
-                      );
-                    }
-                  },
-                  
-                  child: const Text('Enviar'),
+            children: [
+              Flexible(
+              fit: FlexFit.loose,
+              child: TextButton(
+              onPressed: _pickImage,
+              child: _selectedImage == null
+                  ? const Text('Selecione uma imagem')
+                  : Text(_selectedImage!.path),
+              ),),
+
+              Flexible(fit: FlexFit.loose,
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                    
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Processando')),
+                        );
+                      }
+                    },
+                    
+                    child: const Text('Enviar'),
+                    
+                  ),
+                      
                   
                 ),
-          
-                
-              ),
+            ),
 
               const SizedBox(width: 5),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  
-                child: ElevatedButton(
-                  onPressed: () {
-                    _formKey.currentState!.reset();
-                    const SnackBar(content: Text('Processando'));
+              Flexible(
+                fit: FlexFit.loose,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
                     
-                  },
-                  
-                  child: const Text('Limpar'),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _formKey.currentState!.reset();
+                      const SnackBar(content: Text('Processando'));
+                      
+                    },
+                    
+                    child: const Text('Limpar'),
+                    
+                  ),
+              
                   
                 ),
-
-                
               ),
             ],
           ), 
