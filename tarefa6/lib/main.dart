@@ -41,6 +41,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   File? _selectedImage;
+  double _value = 0.0;
 
   Future<void> _pickImage() async {
     final result = await FilePicker.platform.pickFiles(
@@ -209,6 +210,41 @@ class MyCustomFormState extends State<MyCustomForm> {
                   child: Text(value),
                 );
               }).toList(),
+            ),
+          ),
+
+          Expanded(
+            child: SliderTheme(
+              data: const SliderThemeData(
+                valueIndicatorTextStyle: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Escala de alegria:',
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                  Expanded(
+                    child: Slider(
+                      value: _value,
+                      min: 0,
+                      max: 100,
+                      divisions: 10,
+                      label: _value.toString(),
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
 
