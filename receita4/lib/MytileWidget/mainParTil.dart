@@ -208,37 +208,34 @@ class MyAppBar extends StatelessWidget {
 }
 
 class MytileWidget extends StatelessWidget {
-  final List objects;
+  final List<Map<String, dynamic>> objects;
   
   MytileWidget({required this.objects});
 
   @override
   Widget build(BuildContext context) {
-    var columnNames = ["Nome","Estilo","IBU"],
+    return ListView(
+      children: [
+        ListTile(
+          title: const Text('Nome'),
+          subtitle: Row(
+            children: const [
+              Expanded(child: Text('Estilo')),
+              Text('IBU'),
+            ],
+          ),
+        ),
 
-    propertyNames = ["name", "style", "ibu"];
-
-    return Center(
-      child: SingleChildScrollView(
-        child: DataTable(
-          columns: columnNames.map( 
-            (name) => DataColumn(
-              label: Flexible(
-                child: Text(name, style: const TextStyle(fontStyle: FontStyle.italic))
-              )
-      
-            )).toList(),
-      
-          rows: objects.map( 
-            (obj) => DataRow(
-              cells:propertyNames.map(
-                  (propName) => DataCell(Text(obj[propName]))
-                  
-                ).toList()
-              )
-      
-            ).toList()),
-      ),
+        ...dataObjects.map((obj) => ListTile(
+          title: Text(obj['name']!),
+          subtitle: Row(
+            children: [
+              Expanded(child: Text(obj['style']!)),
+              Text(obj['ibu'].toString()),
+            ],
+          ),
+        )).toList(),
+      ],
     );
   }
 }
