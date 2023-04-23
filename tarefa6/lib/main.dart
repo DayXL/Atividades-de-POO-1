@@ -283,27 +283,47 @@ class MyCustomFormState extends State<MyCustomForm> {
                 : Text(_selectedImage!.path),
           ),),
 
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-                
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processando')),
-                    );
-                  }
-                },
-                
-                child: const Text('Enviar'),
+          Row(
+            children: [Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                  
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processando')),
+                      );
+                    }
+                  },
+                  
+                  child: const Text('Enviar'),
+                  
+                ),
+          
                 
               ),
-            ),
-          ),
 
-          
+              const SizedBox(width: 5),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  
+                child: ElevatedButton(
+                  onPressed: () {
+                    _formKey.currentState!.reset();
+                    const SnackBar(content: Text('Processando'));
+                    
+                  },
+                  
+                  child: const Text('Limpar'),
+                  
+                ),
+
+                
+              ),
+            ],
+          ), 
           
         ],
       ),
