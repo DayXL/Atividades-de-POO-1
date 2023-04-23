@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+//Na primeira linha do build de cada uma das classes que você criou, 
+//acrecente a linha print("no build da classe X"), 
+//subistituindo o X pelo nome da classe. 
+//Analize as mensagens print na aba de logs após a primeira renderização do app. 
+//Em seguida, acione os botões da barra inferior diversas vezes e analise os logs novamente. 
+//O que você pode concluir de suas observações?
+//NOTA-SE QUE AO RODAR A PRIMEIRA VEZ O MYAPP, O DATATABLEWIDGET E O NEWNAVBAR É CRIADO,
+//AO CLICLAR EM ALGUMA BOTÃO INFERIOR, APENAS O NEWNAVBAR É MODIFICADO.
+
 var dataObjects = [];
 
 void main() => runApp(MyApp());
@@ -9,6 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("no build da classe MyApp");
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       debugShowCheckedModeBanner:false,
@@ -32,8 +42,10 @@ class NewNavBar extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("no build da classe NewNavBar");
+
     var state = useState(1);
-    
+
     return BottomNavigationBar(onTap: (index){
       state.value = index;
     }, 
@@ -56,8 +68,6 @@ class NewNavBar extends HookWidget {
   }
 }
 
-
-
 class DataTableWidget extends StatelessWidget {
   final List jsonObjects;
 
@@ -65,6 +75,7 @@ class DataTableWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("no build da classe DataTableWidget");
 
     var columnNames = ["Nome","Estilo","IBU"],
 
