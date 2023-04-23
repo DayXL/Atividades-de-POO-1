@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:file_picker/file_picker.dart';
 
 void main() => runApp(const MyApp());
 
@@ -38,6 +40,21 @@ class MyCustomFormState extends State<MyCustomForm> {
   String selecionarEstado = 'Solteiro';
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  File? _selectedImage;
+
+  Future<void> _pickImage() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
+
+    if (result == null || result.files.single.path == null) {
+      return;
+    }
+
+    setState(() {
+      _selectedImage = File(result.files.single.path!);
+    });
+  }
 
   @override
   void dispose() {
@@ -223,6 +240,13 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
          
+          Expanded(child: TextButton(
+            onPressed: _pickImage,
+            child: _selectedImage == null
+                ? const Text('Selecione uma imagem')
+                : Text(_selectedImage!.path),
+          ),),
+
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -242,6 +266,9 @@ class MyCustomFormState extends State<MyCustomForm> {
               ),
             ),
           ),
+
+          
+          
         ],
       ),
     );
