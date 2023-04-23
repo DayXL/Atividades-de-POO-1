@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 void main() => runApp(const MyApp());
 
@@ -32,6 +33,7 @@ class MyCustomForm extends StatefulWidget {
 class MyCustomFormState extends State<MyCustomForm> {
 
   final _formKey = GlobalKey<FormState>();
+  DateTime? _selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,44 @@ class MyCustomFormState extends State<MyCustomForm> {
             },
       
           ),
-      
+
+          GestureDetector(
+            onTap: () {
+              DatePicker.showDatePicker(
+                context,
+                onConfirm: (date) {
+                  setState(() {
+                    _selectedDate = date;
+                  });
+                },
+              );
+            },
+
+            child: AbsorbPointer(
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.calendar_today),
+                  hintText: 'Data de nascimento',
+                  labelText: 'Data de nascimento',
+                ),
+                controller: TextEditingController(
+                  text: _selectedDate != null
+                      ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
+                      : '',
+                ),
+
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Escolha uma data';
+                  }
+                  return null;
+                },
+
+              ),
+            ),
+          ),
+         
+    
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
       
@@ -90,6 +129,8 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
         ],
+
+
       ),
     );
   }
