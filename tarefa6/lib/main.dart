@@ -110,116 +110,124 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Flexible(
-            fit: FlexFit.loose,
-            child: TextFormField(
-              decoration: const InputDecoration(  
-                icon: Icon(Icons.phone),  
-                hintText: 'Digite seu número de telefone',  
-                labelText: 'Telefone',    
-              ),  
-          
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Escreva algo válido';
-                }
-                return null;
-              },
-                
+          Flexible( fit: FlexFit.loose,
+            child: Row(
+              children: [
+              Flexible(
+              fit: FlexFit.loose,
+              child: TextFormField(
+                decoration: const InputDecoration(  
+                  icon: Icon(Icons.phone),  
+                  hintText: 'Digite seu número de telefone',  
+                  labelText: 'Telefone',    
+                ),  
+            
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Escreva algo válido';
+                  }
+                  return null;
+                },
+                  
+              ),
             ),
-          ),
-
-          Flexible(
-            fit: FlexFit.loose,
-            child: GestureDetector(
-              onTap: () {
-                DatePicker.showDatePicker(
-                  context,
-                  onConfirm: (date) {
-                    setState(() {
-                      _selectedDate = date;
-                    });
-                  },
-                );
-              },
           
-              child: AbsorbPointer(
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.calendar_today),
-                    hintText: 'Data de nascimento',
-                    labelText: 'Data de nascimento',
+            Flexible(
+              fit: FlexFit.loose,
+              child: GestureDetector(
+                onTap: () {
+                  DatePicker.showDatePicker(
+                    context,
+                    onConfirm: (date) {
+                      setState(() {
+                        _selectedDate = date;
+                      });
+                    },
+                  );
+                },
+            
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.calendar_today),
+                      hintText: 'Data de nascimento',
+                      labelText: 'Data de nascimento',
+                    ),
+                    controller: TextEditingController(
+                      text: _selectedDate != null
+                          ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
+                          : '',
+                    ),
+            
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Escolha uma data';
+                      }
+                      return null;
+                    },
+            
                   ),
-                  controller: TextEditingController(
-                    text: _selectedDate != null
-                        ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
-                        : '',
-                  ),
-          
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Escolha uma data';
-                    }
-                    return null;
-                  },
-          
                 ),
               ),
             ),
+          
+          ],),
           ),
 
-          Row(children: [
+          Flexible( fit: FlexFit.loose,
+            child: Row(children: [
+              Flexible(
+              fit: FlexFit.loose,
+              child: DropdownButtonFormField<String>(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.people),
+                  hintText: 'Selecione seu gênero',
+                  labelText: 'Gênero',
+                ),
+                value: _selectedGender,
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedGender = newValue!;
+                  });
+                },
+                items: <String>['Homem', 'Mulher', 'Outro']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+          
             Flexible(
-            fit: FlexFit.loose,
-            child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
-                icon: Icon(Icons.people),
-                hintText: 'Selecione seu gênero',
-                labelText: 'Gênero',
-              ),
-              value: _selectedGender,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedGender = newValue!;
-                });
-              },
-              items: <String>['Homem', 'Mulher', 'Outro']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
-
-          Flexible(
-            fit: FlexFit.loose,
-            child: DropdownButtonFormField<String>(
-              decoration: const InputDecoration(
-                icon: Icon(Icons.people),
-                hintText: 'Selecione seu estado civil',
-                labelText: 'Estado civil',
-              ),
-          
-              value: selecionarEstado,
-              onChanged: (newValue) {
-                setState(() {
-                  selecionarEstado = newValue!;
-                });
-              },
-          
-              items: <String>['Solteiro', 'Casado', 'Divorciado', 'Viúvo', 'Outro']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-          ),
+              fit: FlexFit.loose,
+              child: DropdownButtonFormField<String>(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.people),
+                  hintText: 'Selecione seu estado civil',
+                  labelText: 'Estado civil',
+                ),
             
-        ],),
+                value: selecionarEstado,
+                onChanged: (newValue) {
+                  setState(() {
+                    selecionarEstado = newValue!;
+                  });
+                },
+            
+                items: <String>['Solteiro', 'Casado', 'Divorciado', 'Viúvo', 'Outro']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+              
+                  ],),
+          ),
          
           Flexible(
             fit: FlexFit.loose,
@@ -258,94 +266,98 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Row(children: [
-            Flexible(
-            fit: FlexFit.loose,
-            child: TextFormField(
-              decoration: const InputDecoration(  
-                icon: Icon(Icons.lock),  
-                hintText: 'Digite sua senha',  
-                labelText: 'Senha',  
-              ),  
-          
-              obscureText: true, 
-              controller: _passwordController,
-              validator: _validatePassword,   
-            ),
-            ),
-
-            Flexible(
+          Flexible( fit: FlexFit.loose,
+            child: Row(children: [
+              Flexible(
               fit: FlexFit.loose,
               child: TextFormField(
                 decoration: const InputDecoration(  
                   icon: Icon(Icons.lock),  
-                  hintText: 'Confirme sua senha',  
-                  labelText: 'Confirme a senha',  
+                  hintText: 'Digite sua senha',  
+                  labelText: 'Senha',  
                 ),  
             
                 obscureText: true, 
-                controller: _confirmPasswordController,
-                validator: _validateConfirmPassword,   
+                controller: _passwordController,
+                validator: _validatePassword,   
               ),
-            ),
-
-          ],),
-     
-          Row(
-            children: [
-              Flexible(
-              fit: FlexFit.loose,
-              child: TextButton(
-              onPressed: _pickImage,
-              child: _selectedImage == null
-                  ? const Text('Selecione uma imagem')
-                  : Text(_selectedImage!.path),
-              ),),
-
-              Flexible(fit: FlexFit.loose,
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                    
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processando')),
-                        );
-                      }
-                    },
-                    
-                    child: const Text('Enviar'),
-                    
-                  ),
-                      
-                  
-                ),
-            ),
-
-              const SizedBox(width: 5),
-
+              ),
+          
               Flexible(
                 fit: FlexFit.loose,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _formKey.currentState!.reset();
-                      const SnackBar(content: Text('Processando'));
-                      
-                    },
-                    
-                    child: const Text('Limpar'),
-                    
-                  ),
+                child: TextFormField(
+                  decoration: const InputDecoration(  
+                    icon: Icon(Icons.lock),  
+                    hintText: 'Confirme sua senha',  
+                    labelText: 'Confirme a senha',  
+                  ),  
               
-                  
+                  obscureText: true, 
+                  controller: _confirmPasswordController,
+                  validator: _validateConfirmPassword,   
                 ),
               ),
-            ],
+          
+            ],),
+          ),
+     
+          Flexible( fit: FlexFit.loose,
+            child: Row(
+              children: [
+                Flexible(
+                fit: FlexFit.loose,
+                child: TextButton(
+                onPressed: _pickImage,
+                child: _selectedImage == null
+                    ? const Text('Selecione uma imagem')
+                    : Text(_selectedImage!.path),
+                ),),
+          
+                Flexible(fit: FlexFit.loose,
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                      
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processando')),
+                          );
+                        }
+                      },
+                      
+                      child: const Text('Enviar'),
+                      
+                    ),
+                        
+                    
+                  ),
+              ),
+          
+                const SizedBox(width: 5),
+          
+                Flexible(
+                  fit: FlexFit.loose,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _formKey.currentState!.reset();
+                        const SnackBar(content: Text('Processando'));
+                        
+                      },
+                      
+                      child: const Text('Limpar'),
+                      
+                    ),
+                
+                    
+                  ),
+                ),
+              ],
+            ),
           ), 
           
         ],
