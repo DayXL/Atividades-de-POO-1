@@ -89,7 +89,7 @@ class MyCustomFormState extends State<MyCustomForm> {
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Flexible(
             fit: FlexFit.loose,
@@ -168,7 +168,8 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
           ),
 
-          Flexible(
+          Row(children: [
+            Flexible(
             fit: FlexFit.loose,
             child: DropdownButtonFormField<String>(
               decoration: const InputDecoration(
@@ -217,7 +218,9 @@ class MyCustomFormState extends State<MyCustomForm> {
               }).toList(),
             ),
           ),
-
+            
+        ],),
+         
           Flexible(
             fit: FlexFit.loose,
             child: SliderTheme(
