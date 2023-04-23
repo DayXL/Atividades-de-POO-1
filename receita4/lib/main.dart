@@ -2,23 +2,43 @@ import 'package:flutter/material.dart';
 
 List<IconData> icones = [Icons.search, Icons.upload, Icons.exit_to_app];
 
+// var dataObjects = [
+//   {"name": "La Fin Du Monde", "style": "Bock", "ibu": "65"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Duvel", "style": "Pilsner", "ibu": "82"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+//   {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+// ];
+
+// var coluna = ["Nome", "Estilo", "Ibu"];
+
+// var propiedades = ["name", "style", "ibu"];
+
 var dataObjects = [
-  {"name": "La Fin Du Monde", "style": "Bock", "ibu": "65"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Duvel", "style": "Pilsner", "ibu": "82"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
-  {"name": "Sapporo Premiume", "style": "Sour Ale", "ibu": "54"},
+  {"name": "Arco-Iris", "idade": "2", "cor": "Laranja, preto e branco"},
+  {"name": "BlackTwo", "idade": "1.5", "cor": "Verde rajado"},
+  {"name": "Frajolina ", "idade": "3", "cor": "Verde rajado claro"},
+  {"name": "FrajoTwo", "idade": "1.5", "cor": "Verde rajado e branco"},
+  {"name": "Jaréu", "idade": "2", "cor": "Cinza"},
+  {"name": "Pierre", "idade": "5", "cor": "Verde rajado e branco"},
+  {"name": "Arco-Iris", "idade": "2", "cor": "Laranja, preto e branco"},
+  {"name": "BlackTwo", "idade": "1.5", "cor": "Verde rajado"},
+  {"name": "Frajolina ", "idade": "3", "cor": "Verde rajado claro"},
+  {"name": "FrajoTwo", "idade": "1.5", "cor": "Verde rajado e branco"},
+  {"name": "Jaréu", "idade": "2", "cor": "Cinza"},
+  {"name": "Pierre", "idade": "5", "cor": "Verde rajado e branco"},
+
 ];
 
-var coluna = ["Nome", "Estilo", "Ibu"];
+var coluna = ["Nome", "Idade", "Cor"];
 
-var propiedades = ["name", "style", "ibu"];
+var propiedades = ["name", "idade", "cor"];
 
 void main() => runApp(const MyApp());
 
