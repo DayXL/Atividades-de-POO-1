@@ -5,18 +5,17 @@ class DataService{
 
   final ValueNotifier<List> tableStateNotifier = new ValueNotifier([]);
 
-  
-
   void carregar(index){
+    var funcoes = [
+      carregarCafe,
 
-    if (index == 0) {
-      carregarCafe();
-    } else if (index == 1) {
-      carregarCervejas();
-    }
-    else {
-      carregarNacoes();
-    }
+      carregarCervejas,
+
+      carregarNacoes,
+
+    ];
+
+    funcoes[index]();
 
   }
 
