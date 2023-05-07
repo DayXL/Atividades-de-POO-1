@@ -4,6 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class DataService{
 
   final ValueNotifier<List> tableStateNotifier = new ValueNotifier([]);
+  var chaves = ["name","style","ibu"];
+  var colunas = ["Nome", "Estilo", "IBU"];
 
   void carregar(index){
     var funcoes = [
@@ -19,7 +21,27 @@ class DataService{
 
   }
 
+  void especCerve() {
+    chaves = ["name","style","ibu"];
+    colunas = ["Nome", "Estilo", "IBU"];
+
+  }
+
+  void especCafe() {
+    chaves = ["name","quant","sab"];
+    colunas = ["Nome", "Quantidade", "Sabor"];
+
+  }
+
+  void especPais() {
+    chaves = ["name","moeda","hab"];
+    colunas = ["Nome", "Moeda", "Habitantes"];
+
+  }
+
   void carregarCervejas(){
+
+    especCerve();
 
     tableStateNotifier.value = [{
 
@@ -55,15 +77,17 @@ class DataService{
 
     }
 
-    void carregarCafe(){
+  void carregarCafe(){
+
+    especCafe();
 
     tableStateNotifier.value = [{
 
             "name": "cafe1",
 
-            "style": "1",
+            "quant": "1",
 
-            "ibu": "1"
+            "sab": "1"
 
             },
 
@@ -71,9 +95,9 @@ class DataService{
 
             "name": "cafe2",
 
-            "style": "2",
+            "quant": "2",
 
-            "ibu": "2"
+            "sab": "2"
 
             },
 
@@ -81,9 +105,9 @@ class DataService{
 
             "name": "cafe3", 
 
-            "style": "3", 
+            "quant": "3",
 
-            "ibu": "3"
+            "sab": "3"
 
             }
 
@@ -91,15 +115,17 @@ class DataService{
 
     }
 
-    void carregarNacoes(){
+  void carregarNacoes(){
+
+    especPais();
 
     tableStateNotifier.value = [{
 
             "name": "pais1",
 
-            "style": "1",
+            "moeda": "1",
 
-            "ibu": "1"
+            "hab": "1"
 
             },
 
@@ -107,9 +133,9 @@ class DataService{
 
             "name": "pais2",
 
-            "style": "2",
+            "moeda": "2",
 
-            "ibu": "2"
+            "hab": "2"
 
             },
 
@@ -117,9 +143,9 @@ class DataService{
 
             "name": "pais3",
 
-            "style": "3",
+            "moeda": "1",
 
-            "ibu": "3"
+            "hab": "3"
 
             }
 
@@ -169,9 +195,9 @@ class MyApp extends StatelessWidget {
 
               jsonObjects: value, 
 
-              propertyNames: ["name","style","ibu"], 
+              propertyNames: dataService.chaves, 
 
-              columnNames: ["Nome", "Estilo", "IBU"]
+              columnNames: dataService.colunas,
 
 
             );
@@ -210,8 +236,6 @@ class NewNavBar extends HookWidget {
 
         state.value = index;
         itemSelectedCallback(index);
-
-        //carregarCervejas(); 
          
       }, 
 
