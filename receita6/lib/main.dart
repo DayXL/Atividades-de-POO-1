@@ -9,11 +9,16 @@ class DataService{
 
   void carregar(index){
 
-    if (index == 1) carregarCervejas();
+    if (index == 0) {
+      carregarCafe();
+    } else if (index == 1) {
+      carregarCervejas();
+    }
+    else {
+      carregarNacoes();
+    }
 
   }
-
-
 
   void carregarCervejas(){
 
@@ -44,6 +49,78 @@ class DataService{
             "style": "Pilsner", 
 
             "ibu": "82"
+
+            }
+
+          ];
+
+    }
+
+    void carregarCafe(){
+
+    tableStateNotifier.value = [{
+
+            "name": "cafe1",
+
+            "style": "1",
+
+            "ibu": "1"
+
+            },
+
+            {
+
+            "name": "cafe2",
+
+            "style": "2",
+
+            "ibu": "2"
+
+            },
+
+            {
+
+            "name": "cafe3", 
+
+            "style": "3", 
+
+            "ibu": "3"
+
+            }
+
+          ];
+
+    }
+
+    void carregarNacoes(){
+
+    tableStateNotifier.value = [{
+
+            "name": "pais1",
+
+            "style": "1",
+
+            "ibu": "1"
+
+            },
+
+            {
+
+            "name": "pais2",
+
+            "style": "2",
+
+            "ibu": "2"
+
+            },
+
+            {
+
+            "name": "pais3",
+
+            "style": "3",
+
+            "ibu": "3"
 
             }
 
