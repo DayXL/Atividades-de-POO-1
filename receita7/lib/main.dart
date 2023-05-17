@@ -230,38 +230,36 @@ class DataTableWidget extends StatelessWidget {
 
   Widget build(BuildContext context) {
 
-    return Flexible(
-      child: DataTable(
+    return DataTable(
     
-        columns: columnNames.map( 
+      columns: columnNames.map( 
     
-          (name) => DataColumn(
+        (name) => DataColumn(
     
-            label: Expanded(
+          label: Expanded(
     
-              child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
+            child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
     
-    
-            )
     
           )
     
-      ).toList(),
+        )
     
-        rows: jsonObjects.map( 
+    ).toList(),
     
-          (obj) => DataRow(
+      rows: jsonObjects.map( 
     
-              cells: propertyNames.map(
+        (obj) => DataRow(
     
-                (propName) => DataCell(Text(obj[propName]))
+            cells: propertyNames.map(
     
-              ).toList()
+              (propName) => DataCell(Text(obj[propName]))
     
-            )
+            ).toList()
     
-          ).toList()),
-    );
+          )
+    
+        ).toList());
 
   }
 
