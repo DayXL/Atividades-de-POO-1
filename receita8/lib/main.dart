@@ -66,6 +66,8 @@ class DataService{
 
         'propertyNames': ["name","style","ibu"],
 
+        'columnNames': ["Nome", "Estilo", "IBU"]
+
       };
 
     });
@@ -125,7 +127,7 @@ class MyApp extends StatelessWidget {
 
                   propertyNames: value['propertyNames'], 
 
-                  columnNames: ["Nome", "Estilo", "IBU"]
+                  columnNames: value['columnNames'],
 
                 );
 
@@ -135,7 +137,7 @@ class MyApp extends StatelessWidget {
 
             }
 
-            return Text("...");
+            return const Text("...");
 
           }
 
