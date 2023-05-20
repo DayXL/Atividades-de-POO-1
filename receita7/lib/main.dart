@@ -3,6 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+int quantidadePadrao = 5;
+
 class DataService{
 
   final ValueNotifier<List> tableStateNotifier = new ValueNotifier([]);
@@ -20,6 +22,12 @@ class DataService{
     ];
 
     funcoes[index]();
+
+  }
+
+  void mudarQuant(quantidade) {
+
+    quantidadePadrao = quantidade;
 
   }
 
@@ -53,7 +61,7 @@ class DataService{
 
       path: 'api/beer/random_beer',
 
-      queryParameters: {'size': '5'});
+      queryParameters: {'size': '$quantidadePadrao'});
 
     var jsonString = await http.read(beersUri);
 
@@ -75,7 +83,7 @@ class DataService{
 
       path: 'api/coffee/random_coffee',
 
-      queryParameters: {'size': '5'});
+      queryParameters: {'size': '$quantidadePadrao'});
 
       var jsonString = await http.read(cafeUri);
 
@@ -97,7 +105,7 @@ class DataService{
 
       path: 'api/nation/random_nation',
 
-      queryParameters: {'size': '5'});
+      queryParameters: {'size': '$quantidadePadrao'});
 
       var jsonString = await http.read(nacoesUri);
 
@@ -133,11 +141,10 @@ class MyApp extends StatelessWidget {
 
       home: Scaffold(
 
-        appBar: AppBar( 
-
-          title: const Text("Dicas"),
-
-          ),
+        appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(kToolbarHeight),
+            child: MyAppBar(),
+        ),
 
         body: ValueListenableBuilder(
 
@@ -206,7 +213,11 @@ class NewNavBar extends HookWidget {
 
         BottomNavigationBarItem(
 
-            label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
+            label: "Cervejas", 
+
+            icon: Icon(Icons.local_drink_outlined)
+
+        ),
 
         BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
 
@@ -265,4 +276,55 @@ class DataTableWidget extends StatelessWidget {
 
 
 
+}
+
+class MyAppBar extends StatelessWidget {
+  const MyAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: const Text("Dicas"),
+      actions: [
+        PopupMenuButton(
+          
+          onSelected: (quantidade) {
+            dataService.mudarQuant(quantidade);
+          },
+          
+          icon: const Icon(Icons.more_vert),
+
+          itemBuilder: (context) {
+            return criarPopupItens();
+          },
+
+        )
+      ],
+    );
+  }
+
+  criarPopupItens() {
+    return const [
+      PopupMenuItem(
+        value: 5,
+        child: Text('5'),
+
+      ),
+
+      PopupMenuItem( 
+        value: 10,
+        child: Text('10'),
+
+      ),
+
+      PopupMenuItem( 
+        value: 15,
+        child: Text('15'),
+
+      ),
+    ];
+       
+    
+  }
+  
 }
