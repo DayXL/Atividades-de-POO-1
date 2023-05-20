@@ -18,7 +18,7 @@ class DataService{
 
   Future<void> carregar(index) async {
 
-    final funcoes = [carregarCafes, carregarCervejas, carregarNacoes];
+    final funcoes = [carregarCafes, carregarCervejas, carregarNacoes, carregarBancos];
 
     tableStateNotifier.value = {
 
@@ -130,6 +130,31 @@ class DataService{
 
     });
 
+  }
+
+  void carregarBancos() async {
+
+    var bancosUri = Uri(
+      scheme: 'https',
+      host: 'random-data-api.com',
+      path: 'api/v2/banks',
+      queryParameters: {'size': '5'});
+
+    var jsonString = await http.read(bancosUri);
+
+    var bancosJson = jsonDecode(jsonString);
+
+    tableStateNotifier.value = {
+
+        'status': TableStatus.ready,
+
+        'dataObjects': bancosJson,
+
+        'propertyNames': ["bank_name", "account_number", "iban"],
+
+        'columnNames': ["Nome", "Número da conta", "Iban"]
+
+      };
   }
 
 }
@@ -273,6 +298,7 @@ class NewNavBar extends HookWidget {
     var state = useState(1);
 
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
 
       onTap: (index) {
 
@@ -290,18 +316,29 @@ class NewNavBar extends HookWidget {
         BottomNavigationBarItem(
 
           label: "Cafés",
-
           icon: Icon(Icons.coffee_outlined),
 
         ),
 
         BottomNavigationBarItem(
 
-            label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
+          label: "Cervejas", 
+          icon: Icon(Icons.local_drink_outlined)
+        
+        ),
 
         BottomNavigationBarItem(
 
-          label: "Nações", icon: Icon(Icons.flag_outlined))
+          label: "Nações", 
+          icon: Icon(Icons.flag_outlined)
+        
+        ),
+
+        BottomNavigationBarItem(
+
+          label: "Bancos", 
+          icon: Icon(Icons.house_outlined)
+        )
 
       ]);
 
@@ -331,7 +368,7 @@ class DataTableWidget extends StatelessWidget {
 
                   label: Expanded(
 
-                    child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
+                    child: Text(name, style: const TextStyle(fontStyle: FontStyle.italic))
 
                   )
 
