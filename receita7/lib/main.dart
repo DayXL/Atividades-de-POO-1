@@ -43,7 +43,7 @@ class DataService {
     colunas = ["Nome", "Língua", "Capital"];
   }
 
-  Future<void> carregarCervejas() async {
+  void carregarCervejas() async {
     especCerve();
 
     var beersUri = Uri(
@@ -59,7 +59,7 @@ class DataService {
     tableStateNotifier.value = beersJson;
   }
 
-  Future<void> carregarCafe() async {
+  void carregarCafe() async {
     especCafe();
 
     var cafeUri = Uri(
@@ -75,7 +75,7 @@ class DataService {
     tableStateNotifier.value = cafeJson;
   }
 
-  Future<void> carregarNacoes() async {
+  void carregarNacoes() async {
     especPais();
 
     var nacoesUri = Uri(
