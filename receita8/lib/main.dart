@@ -31,15 +31,55 @@ class DataService{
   }
 
   void carregarCafes(){
+    var cafeUri = Uri(
+      scheme: 'https',
+      host: 'random-data-api.com',
+      path: 'api/coffee/random_coffee',
+      queryParameters: {'size': '5'});
 
-    return;
+    http.read(cafeUri).then( (jsonString){
+
+      var cafeJson = jsonDecode(jsonString);
+
+      tableStateNotifier.value = {
+
+        'status': TableStatus.ready,
+
+        'dataObjects': cafeJson,
+
+        'propertyNames': ["blend_name", "origin", "variety"],
+
+        'columnNames': ["Nome", "Origem", "Variedade"]
+
+      };
+
+    });
 
   }
 
-  void carregarNacoes(){
+  void carregarNacoes() async {
 
-    return;
+    var nacoesUri = Uri(
+        scheme: 'https',
+        host: 'random-data-api.com',
+        path: 'api/nation/random_nation',
+        queryParameters: {'size': '5'});
 
+    var jsonString = await http.read(nacoesUri);
+
+    var nacoesJson = jsonDecode(jsonString);
+
+    tableStateNotifier.value = {
+
+        'status': TableStatus.ready,
+
+        'dataObjects': nacoesJson,
+
+        'propertyNames': ["nationality", "language", "capital"],
+
+        'columnNames': ["Nome", "Língua", "Capital"]
+
+      };
   }
 
   void carregarCervejas() {
