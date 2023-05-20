@@ -3,13 +3,28 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+enum TableStatus{idle,loading,ready,error}
+
 class DataService{
 
-  final ValueNotifier<List> tableStateNotifier = ValueNotifier([]);
+  final ValueNotifier<Map<String,dynamic>> tableStateNotifier = ValueNotifier({
+    'status': TableStatus.idle,
+
+    'dataObjects':[]
+
+  });
 
   void carregar(index){
 
     final funcoes = [carregarCafes, carregarCervejas, carregarNacoes];
+
+    tableStateNotifier.value = {
+
+      'status': TableStatus.loading,
+
+      'dataObjects': []
+
+    };
 
     funcoes[index]();
 
@@ -27,7 +42,7 @@ class DataService{
 
   }
 
-  Future<void> carregarCervejas() async{
+  void carregarCervejas() {
 
     var beersUri = Uri(
 
@@ -39,11 +54,21 @@ class DataService{
 
       queryParameters: {'size': '5'});
 
-    var jsonString = await http.read(beersUri);
+     http.read(beersUri).then( (jsonString){
 
-    var beersJson = jsonDecode(jsonString);
+      var beersJson = jsonDecode(jsonString);
 
-    tableStateNotifier.value = beersJson;
+      tableStateNotifier.value = {
+
+        'status': TableStatus.ready,
+
+        'dataObjects': beersJson,
+
+        'propertyNames': ["name","style","ibu"],
+
+      };
+
+    });
 
   }
 
@@ -85,15 +110,32 @@ class MyApp extends StatelessWidget {
 
           builder:(_, value, __){
 
-            return DataTableWidget(
+            switch (value['status']){
 
-              jsonObjects:value, 
+              case TableStatus.idle: 
+                return const Text("Toque algum botão");
 
-              propertyNames: ["name","style","ibu"], 
+              case TableStatus.loading:
+                return const CircularProgressIndicator();
 
-              columnNames: ["Nome", "Estilo", "IBU"]
+              case TableStatus.ready: 
+                return DataTableWidget(
 
-            );
+                  jsonObjects:value['dataObjects'], 
+
+                  propertyNames: value['propertyNames'], 
+
+                  columnNames: ["Nome", "Estilo", "IBU"]
+
+                );
+
+              case TableStatus.error: 
+
+                return const Text("Ops");
+
+            }
+
+            return Text("...");
 
           }
 
