@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
 
 enum TableStatus{idle,loading,ready,error}
+late final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey;
 
 class DataService{
 
@@ -14,7 +16,7 @@ class DataService{
 
   });
 
-  void carregar(index){
+  Future<void> carregar(index) async {
 
     final funcoes = [carregarCafes, carregarCervejas, carregarNacoes];
 
@@ -26,7 +28,23 @@ class DataService{
 
     };
 
-    funcoes[index]();
+    bool conexaoInternet = await Conexao.verificarConexao();    
+
+    if (conexaoInternet) {
+      funcoes[index]();
+
+    } 
+
+    else {
+
+      _scaffoldMessengerKey.currentState?.showSnackBar(
+        const SnackBar(
+          content: Text('Sem conexão com a internet.'),
+        ),
+
+      );
+
+    }
 
   }
 
@@ -120,6 +138,8 @@ final dataService = DataService();
 
 void main() {
 
+  _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
   MyApp app = MyApp();
 
   runApp(app);
@@ -138,95 +158,100 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner:false,
 
-      home: Scaffold(
+      home: ScaffoldMessenger(
 
-        appBar: AppBar( 
+        key: _scaffoldMessengerKey,
 
-          title: const Text("Dicas"),
-
-          ),
-
-        body: ValueListenableBuilder(
-
-          valueListenable: dataService.tableStateNotifier,
-
-          builder:(_, value, __){
-
-            switch (value['status']){
-
-              case TableStatus.idle: 
-                return SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Center(
-                    child: Column(children:[ 
-                
-                      Image.asset('assets/imagens/bemVindo.gif',
-                        fit: BoxFit.contain,
-                      ),
-                
-                      const SizedBox(
-                        height: 20,
-                      ),
-
-                      const Text('Uso do aplicativo:', 
-                        style: TextStyle(fontStyle: FontStyle.italic,
-                        fontSize: 20
-                        ),
-                        
-                      ),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      const Text(' 1 - Para gerar uma tabela, seleciona algum botão abaixo',
-                        style: TextStyle(fontStyle: FontStyle.italic,
-                        fontSize: 15)
-                      ),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      const Text(' 2 - Para mudar a quantidade mostrada, use o Botão popUp',
-                        style: TextStyle(fontStyle: FontStyle.italic,
-                        fontSize: 15)
-                      )
-                                               
-                    ],
+        child: Scaffold(
+      
+          appBar: AppBar( 
+      
+            title: const Text("Dicas"),
+      
+            ),
+      
+          body: ValueListenableBuilder(
+      
+            valueListenable: dataService.tableStateNotifier,
+      
+            builder:(_, value, __){
+      
+              switch (value['status']){
+      
+                case TableStatus.idle: 
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Center(
+                      child: Column(children:[ 
                   
+                        Image.asset('assets/imagens/bemVindo.gif',
+                          fit: BoxFit.contain,
+                        ),
+                  
+                        const SizedBox(
+                          height: 20,
+                        ),
+      
+                        const Text('Uso do aplicativo:', 
+                          style: TextStyle(fontStyle: FontStyle.italic,
+                          fontSize: 20
+                          ),
+                          
+                        ),
+      
+                        const SizedBox(
+                          height: 10,
+                        ),
+      
+                        const Text(' 1 - Para gerar uma tabela, seleciona algum botão abaixo',
+                          style: TextStyle(fontStyle: FontStyle.italic,
+                          fontSize: 15)
+                        ),
+      
+                        const SizedBox(
+                          height: 10,
+                        ),
+      
+                        const Text(' 2 - Para mudar a quantidade mostrada, use o Botão popUp',
+                          style: TextStyle(fontStyle: FontStyle.italic,
+                          fontSize: 15)
+                        )
+                                                 
+                      ],
+                    
+                      ),
                     ),
-                  ),
-                );
-
-              case TableStatus.loading:
-                return const Center(child: SizedBox(child: CircularProgressIndicator()));
-
-              case TableStatus.ready: 
-                return DataTableWidget(
-
-                  jsonObjects:value['dataObjects'], 
-
-                  propertyNames: value['propertyNames'], 
-
-                  columnNames: value['columnNames'],
-
-                );
-
-              case TableStatus.error: 
-
-                return const Text("Ops");
-
+                  );
+      
+                case TableStatus.loading:
+                  return const Center(child: SizedBox(child: CircularProgressIndicator()));
+      
+                case TableStatus.ready: 
+                  return DataTableWidget(
+      
+                    jsonObjects:value['dataObjects'], 
+      
+                    propertyNames: value['propertyNames'], 
+      
+                    columnNames: value['columnNames'],
+      
+                  );
+      
+                case TableStatus.error: 
+      
+                  return const Text("Ops");
+      
+              }
+      
+              return const Text("...");
+      
             }
-
-            return const Text("...");
-
-          }
-
+      
+          ),
+      
+          bottomNavigationBar: NewNavBar(itemSelectedCallback: dataService.carregar),
+      
         ),
-
-        bottomNavigationBar: NewNavBar(itemSelectedCallback: dataService.carregar),
-
       ));
 
   }
@@ -236,7 +261,7 @@ class MyApp extends StatelessWidget {
 class NewNavBar extends HookWidget {
 
   final _itemSelectedCallback;
-
+  
   NewNavBar({itemSelectedCallback}):
 
     _itemSelectedCallback = itemSelectedCallback ?? (int){}
@@ -249,12 +274,13 @@ class NewNavBar extends HookWidget {
 
     return BottomNavigationBar(
 
-      onTap: (index){
+      onTap: (index) {
 
         state.value = index;
 
-        _itemSelectedCallback(index);                
+        _itemSelectedCallback(index);
 
+     
       }, 
 
       currentIndex: state.value,
@@ -331,4 +357,20 @@ class DataTableWidget extends StatelessWidget {
 
   }
 
+}
+
+class Conexao {
+  static Future<bool> verificarConexao() async {
+    try {
+      final result = await InternetAddress.lookup('example.com');
+      
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    } on SocketException catch (_) {
+      return false;
+    }
+  }
 }
