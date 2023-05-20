@@ -115,10 +115,52 @@ class MyApp extends StatelessWidget {
             switch (value['status']){
 
               case TableStatus.idle: 
-                return const Text("Toque algum botão");
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Center(
+                    child: Column(children:[ 
+                
+                      Image.asset('assets/imagens/bemVindo.gif',
+                        fit: BoxFit.contain,
+                      ),
+                
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                      const Text('Uso do aplicativo:', 
+                        style: TextStyle(fontStyle: FontStyle.italic,
+                        fontSize: 20
+                        ),
+                        
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      const Text(' 1 - Para gerar uma tabela, seleciona algum botão abaixo',
+                        style: TextStyle(fontStyle: FontStyle.italic,
+                        fontSize: 15)
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      const Text(' 2 - Para mudar a quantidade mostrada, use o Botão popUp',
+                        style: TextStyle(fontStyle: FontStyle.italic,
+                        fontSize: 15)
+                      )
+                                               
+                    ],
+                  
+                    ),
+                  ),
+                );
 
               case TableStatus.loading:
-                return const CircularProgressIndicator();
+                return const Center(child: SizedBox(child: CircularProgressIndicator()));
 
               case TableStatus.ready: 
                 return DataTableWidget(
