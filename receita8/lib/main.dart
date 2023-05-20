@@ -6,6 +6,8 @@ import 'dart:io';
 
 enum TableStatus{idle,loading,ready,error}
 late final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey;
+int quantidadePadrao = 5;
+int indexPadrao = 1;
 
 class DataService{
 
@@ -31,6 +33,8 @@ class DataService{
     bool conexaoInternet = await Conexao.verificarConexao();    
 
     if (conexaoInternet) {
+
+      indexPadrao = index;
       funcoes[index]();
 
     } 
@@ -48,12 +52,18 @@ class DataService{
 
   }
 
+  void mudarQuant(quantidade) {
+    quantidadePadrao = quantidade;
+    carregar(indexPadrao);
+
+  }
+
   void carregarCafes(){
     var cafeUri = Uri(
       scheme: 'https',
       host: 'random-data-api.com',
       path: 'api/coffee/random_coffee',
-      queryParameters: {'size': '5'});
+      queryParameters: {'size': '$quantidadePadrao'});
 
     http.read(cafeUri).then( (jsonString){
 
@@ -81,7 +91,7 @@ class DataService{
         scheme: 'https',
         host: 'random-data-api.com',
         path: 'api/nation/random_nation',
-        queryParameters: {'size': '5'});
+        queryParameters: {'size': '$quantidadePadrao'});
 
     var jsonString = await http.read(nacoesUri);
 
@@ -110,7 +120,7 @@ class DataService{
 
       path: 'api/beer/random_beer',
 
-      queryParameters: {'size': '5'});
+      queryParameters: {'size': '$quantidadePadrao'});
 
      http.read(beersUri).then( (jsonString){
 
@@ -138,7 +148,7 @@ class DataService{
       scheme: 'https',
       host: 'random-data-api.com',
       path: 'api/v2/banks',
-      queryParameters: {'size': '5'});
+      queryParameters: {'size': '$quantidadePadrao'});
 
     var jsonString = await http.read(bancosUri);
 
@@ -189,11 +199,10 @@ class MyApp extends StatelessWidget {
 
         child: Scaffold(
       
-          appBar: AppBar( 
-      
-            title: const Text("Dicas"),
-      
-            ),
+          appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(kToolbarHeight),
+            child: MyAppBar(),
+          ),
       
           body: ValueListenableBuilder(
       
@@ -252,15 +261,18 @@ class MyApp extends StatelessWidget {
                   return const Center(child: SizedBox(child: CircularProgressIndicator()));
       
                 case TableStatus.ready: 
-                  return DataTableWidget(
-      
-                    jsonObjects:value['dataObjects'], 
-      
-                    propertyNames: value['propertyNames'], 
-      
-                    columnNames: value['columnNames'],
-      
-                  );
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: DataTableWidget(
+                        
+                      jsonObjects:value['dataObjects'], 
+                        
+                      propertyNames: value['propertyNames'], 
+                        
+                      columnNames: value['columnNames'],
+                        
+                    ),
+                );
       
                 case TableStatus.error: 
       
@@ -409,5 +421,44 @@ class Conexao {
     } on SocketException catch (_) {
       return false;
     }
+  }
+}
+
+class MyAppBar extends StatelessWidget {
+  const MyAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: const Text("Dicas"),
+      actions: [
+        PopupMenuButton(
+          onSelected: (quantidade) {
+            dataService.mudarQuant(quantidade);
+          },
+          icon: const Icon(Icons.more_vert),
+          itemBuilder: (context) {
+            return criarPopupItens();
+          },
+        )
+      ],
+    );
+  }
+
+  criarPopupItens() {
+    return const [
+      PopupMenuItem(
+        value: 5,
+        child: Text('5'),
+      ),
+      PopupMenuItem(
+        value: 10,
+        child: Text('10'),
+      ),
+      PopupMenuItem(
+        value: 15,
+        child: Text('15'),
+      ),
+    ];
   }
 }
