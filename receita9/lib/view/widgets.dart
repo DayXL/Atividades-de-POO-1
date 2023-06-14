@@ -18,7 +18,37 @@ class MyApp extends StatelessWidget {
 
         appBar: AppBar( 
 
-          title: const Text("Dicas")
+          title: const Text("Dicas"),
+
+          actions:[
+
+            PopupMenuButton(
+
+              itemBuilder: (_) => [3,7,15].map(
+
+                (num) => PopupMenuItem(
+
+                  value: num,
+
+                  child: Text("Carregar $num itens por vez"),
+
+
+
+                ) 
+
+              ).toList(),
+
+              onSelected: (number){
+
+                dataService.numberOfItems = number;
+
+              },
+
+
+
+            )
+
+          ] 
 
           
 
