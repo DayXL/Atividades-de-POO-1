@@ -33,11 +33,10 @@ enum ItemType {
 }
 
 class DataService {
-  static const MAX_N_ITEMS = 15;
-
-  static const MIN_N_ITEMS = 3;
-
-  static const DEFAULT_N_ITEMS = 7;
+  
+  static int get MAX_N_ITEMS => valores[2];
+  static int get MIN_N_ITEMS => valores[0];
+  static int get DEFAULT_N_ITEMS => valores[1];
 
   int _numberOfItems = DEFAULT_N_ITEMS;
 
@@ -71,68 +70,8 @@ class DataService {
 
     var objetosOrdenados = [];
 
-    final type = tableStateNotifier.value['itemType'];
-
-    if (type == ItemType.beer && propriedade == "name") {
-      objetosOrdenados = ord.ordenarCervejasPorNomeCrescente(objetos);
-    }
-
-    else if (type == ItemType.beer && propriedade == "style"){
-
-      objetosOrdenados = ord.ordenarCervejasPorEstiloCrescente(objetos);
-
-    }
-
-    else if (type == ItemType.beer && propriedade == "ibu"){
-
-      objetosOrdenados = ord.ordenarCervejasPorIbuCrescente(objetos);
-
-    }
-
-    else if (type == ItemType.coffee && propriedade == "blend_name"){
-
-      objetosOrdenados = ord.ordenarCafePorNomeCrescente(objetos);
-
-    }
-
-    else if (type == ItemType.coffee && propriedade == "origin"){
-
-      objetosOrdenados = ord.ordenarCafePorOrigemCrescente(objetos);
-
-    }
-
-    else if (type == ItemType.coffee && propriedade == "variety"){
-
-      objetosOrdenados = ord.ordenarCafePorNomeCrescente(objetos);
-
-    }
-
-
- else if (type == ItemType.nation && propriedade == "nationality"){
-
-      objetosOrdenados = ord.ordenarNacaoPorNomeCrescente(objetos);
-
-    }
-
-    else if (type == ItemType.nation && propriedade == "capital"){
-
-      objetosOrdenados = ord.ordenarNacaoPorCapitalCrescente(objetos);
-
-    }
-
-    else if (type == ItemType.nation && propriedade == "language"){
-
-      objetosOrdenados = ord.ordenarNacaoPorIdiomaCrescente(objetos);
-
-    }
-
-    else if (type == ItemType.nation && propriedade == "national_sport"){
-
-      objetosOrdenados = ord.ordenarNacaoPorEsporteCrescente(objetos);
-
-    }
-    
-
+    objetosOrdenados = ord.ordenarItem(objetos, propriedade);
+  
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
 
