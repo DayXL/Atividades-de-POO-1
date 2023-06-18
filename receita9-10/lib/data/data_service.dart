@@ -83,6 +83,30 @@ class DataService {
 
     }
 
+    else if (type == ItemType.beer && propriedade == "ibu"){
+
+      objetosOrdenados = ord.ordenarCervejasPorIbuCrescente(objetos);
+
+    }
+
+    else if (type == ItemType.coffee && propriedade == "blend_name"){
+
+      objetosOrdenados = ord.ordenarCafePorNomeCrescente(objetos);
+
+    }
+
+    else if (type == ItemType.coffee && propriedade == "origin"){
+
+      objetosOrdenados = ord.ordenarCafePorOrigemCrescente(objetos);
+
+    }
+
+    else if (type == ItemType.coffee && propriedade == "variety"){
+
+      objetosOrdenados = ord.ordenarCafePorNomeCrescente(objetos);
+
+    }
+
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
 
