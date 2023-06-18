@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import '../data/data_service.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookWidget {
 
   @override
 
   Widget build(BuildContext context) {
+    var state = useState(3);
 
     return MaterialApp(
 
@@ -23,15 +24,14 @@ class MyApp extends StatelessWidget {
           actions:[
 
             PopupMenuButton(
+              initialValue: state.value, 
 
               itemBuilder: (_) => [3,7,15].map(
 
                 (num) => PopupMenuItem(
-
                   value: num,
 
                   child: Text("Carregar $num itens por vez"),
-
 
 
                 ) 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               ).toList(),
 
               onSelected: (number){
-
+                state.value = number;
                 dataService.numberOfItems = number;
 
               },
@@ -90,8 +90,7 @@ class MyApp extends StatelessWidget {
 
             return Text("...");
 
-            
-
+  
           }
 
         ),
@@ -102,12 +101,7 @@ class MyApp extends StatelessWidget {
 
   }
 
-
-
 }
-
-
-
 
 
 class NewNavBar extends HookWidget {
@@ -118,17 +112,11 @@ class NewNavBar extends HookWidget {
 
     _itemSelectedCallback = itemSelectedCallback ?? (int){}
 
-    
-
-
-
   @override
 
   Widget build(BuildContext context) {
 
     var state = useState(1);
-
-    
 
     return BottomNavigationBar(
 
@@ -146,23 +134,11 @@ class NewNavBar extends HookWidget {
 
         BottomNavigationBarItem(
 
-          label: "Cafés",
+          label: "Cafés", icon: Icon(Icons.coffee_outlined),),
 
-          icon: Icon(Icons.coffee_outlined),
+        BottomNavigationBarItem(label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
 
-        ),
-
-
-
-        BottomNavigationBarItem(
-
-            label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
-
-
-
-        BottomNavigationBarItem(
-
-          label: "Nações", icon: Icon(Icons.flag_outlined))
+        BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
 
       ]);
 

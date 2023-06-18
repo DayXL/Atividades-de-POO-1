@@ -21,6 +21,12 @@ class DataService{
     _numberOfItems = n < 0 ? MIN_N_ITEMS: n > MAX_N_ITEMS? MAX_N_ITEMS: n;
 
   }
+
+  get numberOfItems{
+
+    return;
+
+  }
   
   final ValueNotifier<Map<String,dynamic>> tableStateNotifier = ValueNotifier({
     'status':TableStatus.idle,
