@@ -72,15 +72,21 @@ class MyApp extends HookWidget {
 
               case TableStatus.ready: 
 
-                return SingleChildScrollView(child: DataTableWidget(
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
 
-                  jsonObjects: value['dataObjects'], 
-
-                  propertyNames: value['propertyNames'], 
-
-                  columnNames: value['columnNames']
-
-                )) ;
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    
+                    child: DataTableWidget(
+                    jsonObjects: value['dataObjects'], 
+                
+                    propertyNames: value['propertyNames'], 
+                
+                    columnNames: value['columnNames']
+                
+                  )),
+                ) ;
 
               case TableStatus.error: 
 
@@ -151,46 +157,29 @@ class NewNavBar extends HookWidget {
 }
 
 
-
-
-
 class DataTableWidget extends StatelessWidget {
 
-
-
   final List jsonObjects;
-
   final List<String> columnNames;
-
   final List<String> propertyNames;
 
-
-
   DataTableWidget( {this.jsonObjects = const [], this.columnNames = const [], this.propertyNames= const []});
-
-
 
   @override
 
   Widget build(BuildContext context) {
-
     return DataTable(
-
       columns: columnNames.map( 
 
-                (name) => DataColumn(
+        (name) => DataColumn(
+          label: Expanded(
+            child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
 
-                  label: Expanded(
+          )
 
-                    child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
+        )
 
-                  )
-
-                )
-
-              ).toList()       
-
-      ,
+      ).toList(),
 
       rows: jsonObjects.map( 
 
@@ -207,7 +196,5 @@ class DataTableWidget extends StatelessWidget {
         ).toList());
 
   }
-
-
 
 }
