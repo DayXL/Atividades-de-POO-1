@@ -72,20 +72,29 @@ class MyApp extends HookWidget {
 
               case TableStatus.ready: 
 
-                return SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: InteractiveViewer(
+                    boundaryMargin: EdgeInsets.all(double.infinity),
+                    minScale: 0.1,
+                    maxScale: 5.0,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                  
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        
+                        child: DataTableWidget(
+                        jsonObjects: value['dataObjects'], 
                     
-                    child: DataTableWidget(
-                    jsonObjects: value['dataObjects'], 
-                
-                    propertyNames: value['propertyNames'], 
-                
-                    columnNames: value['columnNames']
-                
-                  )),
+                        propertyNames: value['propertyNames'], 
+                    
+                        columnNames: value['columnNames']
+                    
+                      )),
+                    ),
+                  ),
                 ) ;
 
               case TableStatus.error: 
