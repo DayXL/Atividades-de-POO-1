@@ -75,25 +75,20 @@ class MyApp extends HookWidget {
                 return Container(
                   width: double.infinity,
                   height: double.infinity,
-                  child: InteractiveViewer(
-                    boundaryMargin: EdgeInsets.all(double.infinity),
-                    minScale: 0.1,
-                    maxScale: 5.0,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
                   
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        
-                        child: DataTableWidget(
-                        jsonObjects: value['dataObjects'], 
-                    
-                        propertyNames: value['propertyNames'], 
-                    
-                        columnNames: value['columnNames']
-                    
-                      )),
-                    ),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      
+                      child: DataTableWidget(
+                      jsonObjects: value['dataObjects'], 
+                  
+                      propertyNames: value['propertyNames'], 
+                  
+                      columnNames: value['columnNames']
+                  
+                    )),
                   ),
                 ) ;
 
@@ -181,6 +176,8 @@ class DataTableWidget extends StatelessWidget {
       columns: columnNames.map( 
 
         (name) => DataColumn(
+          onSort: (columnIndex, ascending) => dataService.ordenarEstadoAtual(propertyNames[columnIndex]),
+          
           label: Expanded(
             child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
 
