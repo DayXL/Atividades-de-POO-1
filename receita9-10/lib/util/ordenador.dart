@@ -434,5 +434,295 @@ class Ordenador{
 
   }
   
+   List ordenarNacaoPorNomeCrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["nationality"].compareTo(proximo["nationality"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+
+    return nacaoOrdenadas;
+
+  }
+
+  List ordenarNacaoPorNomeDecrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["nationality"].compareTo(proximo["nationality"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+
+    return nacaoOrdenadas;
+
+  }
+
+  List ordenarNacaoPorCapitalCrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["capital"].compareTo(proximo["capital"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+
+    return nacaoOrdenadas;
+
+  }
+
+  List ordenarNacaoPorCapitalDecrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["capital"].compareTo(proximo["capital"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+    
+
+    return nacaoOrdenadas;
+
+  }
+
+  List ordenarNacaoPorIdiomaCrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["language"].compareTo(proximo["language"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+
+    return nacaoOrdenadas;
+
+  }
+
+  List ordenarNacaoPorIdiomaDecrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["language"].compareTo(proximo["language"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+    
+
+    return nacaoOrdenadas;
+
+  }
+
+   List ordenarNacaoPorEsporteCrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["national_sport"].compareTo(proximo["national_sport"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+
+    return nacaoOrdenadas;
+
+  }
+
+  List ordenarNacaoPorEsporteDecrescente(List nacao){
+
+    List nacaoOrdenadas = List.of(nacao);
+
+    bool trocouAoMenosUm;
+
+    do{
+
+      trocouAoMenosUm = false;
+
+      for (int i=0; i<nacaoOrdenadas.length-1; i++){
+
+        var atual = nacaoOrdenadas[i];
+
+        var proximo = nacaoOrdenadas[i+1];
+
+        if (atual["national_sport"].compareTo(proximo["national_sport"]) > 0){
+
+          var aux = nacaoOrdenadas[i];
+
+          nacaoOrdenadas[i] = nacaoOrdenadas[i+1];
+
+          nacaoOrdenadas[i+1] = aux;
+
+          trocouAoMenosUm = true;
+
+        }
+
+      }
+
+    }while(trocouAoMenosUm);
+    
+
+    return nacaoOrdenadas;
+
+  }
 
 }

@@ -107,6 +107,32 @@ class DataService {
 
     }
 
+
+ else if (type == ItemType.nation && propriedade == "nationality"){
+
+      objetosOrdenados = ord.ordenarNacaoPorNomeCrescente(objetos);
+
+    }
+
+    else if (type == ItemType.nation && propriedade == "capital"){
+
+      objetosOrdenados = ord.ordenarNacaoPorCapitalCrescente(objetos);
+
+    }
+
+    else if (type == ItemType.nation && propriedade == "language"){
+
+      objetosOrdenados = ord.ordenarNacaoPorIdiomaCrescente(objetos);
+
+    }
+
+    else if (type == ItemType.nation && propriedade == "national_sport"){
+
+      objetosOrdenados = ord.ordenarNacaoPorEsporteCrescente(objetos);
+
+    }
+    
+
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
 
