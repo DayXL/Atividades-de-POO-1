@@ -7,12 +7,13 @@ import 'dart:convert';
 enum TableStatus{idle,loading,ready,error}
 enum ItemType{beer, coffee, nation, none}
 
+var valores = [3,7,15];
+
 class DataService{
-  static const MAX_N_ITEMS = 15;
 
-  static const MIN_N_ITEMS = 3;
-
-  static const DEFAULT_N_ITEMS = 7;
+  static int get MAX_N_ITEMS => valores[2];
+  static int get MIN_N_ITEMS => valores[0];
+  static int get DEFAULT_N_ITEMS => valores[1];
 
   int _numberOfItems = DEFAULT_N_ITEMS;
 
@@ -24,7 +25,7 @@ class DataService{
 
   get numberOfItems{
 
-    return;
+    return _numberOfItems;
 
   }
   

@@ -7,7 +7,7 @@ class MyApp extends HookWidget {
   @override
 
   Widget build(BuildContext context) {
-    var state = useState(3);
+    var state = useState(7);
 
     return MaterialApp(
 
@@ -26,7 +26,7 @@ class MyApp extends HookWidget {
             PopupMenuButton(
               initialValue: state.value, 
 
-              itemBuilder: (_) => [3,7,15].map(
+              itemBuilder: (_) => valores.map(
 
                 (num) => PopupMenuItem(
                   value: num,
