@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../util/decididor.dart';
 import '../util/ordenador.dart';
 
 var valores = [3, 7, 15];
@@ -70,7 +71,7 @@ class DataService {
 
     var objetosOrdenados = [];
 
-    objetosOrdenados = ord.ordenarItem(objetos, propriedade);
+    objetosOrdenados = ord.ordenarItem(objetos, DecididorJson(propriedade));
   
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
@@ -147,3 +148,28 @@ class DataService {
 }
 
 final dataService = DataService();
+
+class DecididorJson extends Decididor{
+
+  final String prop;
+  DecididorJson( this.prop);
+
+  @override
+
+  bool precisaTrocarAtualPeloProximo(atual, proximo) {
+
+    try{
+
+      return atual[prop].compareTo(proximo[prop]) > 0;
+
+    }catch (error){
+
+      return false;
+
+    }    
+
+  }
+
+
+
+}

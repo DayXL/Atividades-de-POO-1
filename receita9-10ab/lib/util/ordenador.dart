@@ -1,6 +1,8 @@
+import 'decididor.dart';
+
 class Ordenador{
 
-  List ordenarItem(List item, String prop){
+  List ordenarItem(List item, Decididor decididor){
 
     List itemOrdenadas = List.of(item);
 
@@ -16,7 +18,7 @@ class Ordenador{
 
         var proximo = itemOrdenadas[i+1];
 
-        if (atual[prop].compareTo(proximo[prop]) > 0){
+        if (decididor.precisaTrocarAtualPeloProximo(atual,proximo)){
 
           var aux = itemOrdenadas[i];
 
