@@ -152,16 +152,17 @@ final dataService = DataService();
 class DecididorJson extends Decididor{
 
   final String prop;
-  DecididorJson( this.prop);
+  final bool crescente;
+  DecididorJson( this.prop, [this.crescente = true]);
 
   @override
 
   bool precisaTrocarAtualPeloProximo(atual, proximo) {
 
     try{
-
-      return atual[prop].compareTo(proximo[prop]) > 0;
-
+      final ordemCorreta = crescente ? [atual, proximo]: [proximo, atual] ;
+      return ordemCorreta[0][prop].compareTo(ordemCorreta[1][prop]) > 0;
+      
     }catch (error){
 
       return false;
