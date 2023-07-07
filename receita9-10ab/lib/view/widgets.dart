@@ -16,9 +16,9 @@ class MyApp extends HookWidget {
 
       home: Scaffold(
 
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
             preferredSize: Size.fromHeight(kToolbarHeight),
-            child: MyAppBar(),
+            child: MyAppBar(callback: dataService.filtrarEstadoAtual),
         ),
 
         body: ValueListenableBuilder(
@@ -184,7 +184,11 @@ class DataTableWidget extends HookWidget {
 }
 
 class MyAppBar extends HookWidget {
-  const MyAppBar({Key? key}) : super(key: key);
+  final _callback;
+
+  MyAppBar({callback}):
+
+    _callback = callback ?? (int){}
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +201,7 @@ class MyAppBar extends HookWidget {
             Flexible(
               child: TextField(
                 onChanged: (value) {
-                  dataService.filtrarEstadoAtual(value);
+                  _callback(value);
                 },
             
                 decoration: const InputDecoration(
