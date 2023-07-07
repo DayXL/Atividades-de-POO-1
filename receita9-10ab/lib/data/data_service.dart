@@ -60,7 +60,7 @@ class DataService {
     carregarPorTipo(params[index]);
   }
 
-  void ordenarEstadoAtual(String propriedade) {
+  void ordenarEstadoAtual(String propriedade, [bool cresc = true]) {
     List objetos = tableStateNotifier.value['dataObjects'] ?? [];
 
     if (objetos == []) return;
@@ -69,7 +69,7 @@ class DataService {
 
     var objetosOrdenados = [];
 
-    bool crescente = true;
+    bool crescente = cresc;
 
     bool precisaTrocarAtualPeloProximo(atual, proximo) {
       final ordemCorreta = crescente ? [atual, proximo] : [proximo, atual];

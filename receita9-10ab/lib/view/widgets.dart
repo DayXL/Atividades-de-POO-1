@@ -161,22 +161,34 @@ class NewNavBar extends HookWidget {
 }
 
 
-class DataTableWidget extends StatelessWidget {
+class DataTableWidget extends HookWidget {
 
   final List jsonObjects;
   final List<String> columnNames;
   final List<String> propertyNames;
+  
 
   DataTableWidget( {this.jsonObjects = const [], this.columnNames = const [], this.propertyNames= const []});
 
   @override
 
   Widget build(BuildContext context) {
+    final sortAscending = useState(true);
+    final sortColumnIndex = useState(1);
+
     return DataTable(
+      sortAscending: sortAscending.value,
+      sortColumnIndex: sortColumnIndex.value,
+
       columns: columnNames.map( 
 
         (name) => DataColumn(
-          onSort: (columnIndex, ascending) => dataService.ordenarEstadoAtual(propertyNames[columnIndex]),
+          onSort: (columnIndex, ascending) {
+            sortColumnIndex.value = columnIndex;
+            sortAscending.value = !sortAscending.value;
+
+            dataService.ordenarEstadoAtual(propertyNames[columnIndex], sortAscending.value);
+          },
           
           label: Expanded(
             child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
