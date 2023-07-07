@@ -40,6 +40,8 @@ class DataService {
 
   int _numberOfItems = DEFAULT_N_ITEMS;
 
+  var objetoOriginal = [];
+
   set numberOfItems(n) {
     _numberOfItems = n < 0
         ? MIN_N_ITEMS
@@ -73,34 +75,38 @@ class DataService {
 
     bool precisaTrocarAtualPeloProximo(atual, proximo) {
       final ordemCorreta = crescente ? [atual, proximo] : [proximo, atual];
-      return ordemCorreta[0][propriedade].compareTo(ordemCorreta[1][propriedade]) > 0;
+      return ordemCorreta[0][propriedade]
+              .compareTo(ordemCorreta[1][propriedade]) >
+          0;
     }
 
     //objetosOrdenados = ord.ordenarItem(objetos, DecididorJson(propriedade));
-    objetosOrdenados = ord.ordenarItem2(
-      objetos,
-      precisaTrocarAtualPeloProximo
-    );
+    objetosOrdenados = ord.ordenarItem2(objetos, precisaTrocarAtualPeloProximo);
 
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
 
   void filtrarEstadoAtual(String filtrar) {
-    List objetos = tableStateNotifier.value['dataObjects'] ?? [];
+    List objetos = objetoOriginal;
 
     if (objetos.isEmpty) return;
 
     List objetosFiltrados = [];
 
-    for (var objeto in objetos) {
-      if (objeto.toString().toLowerCase().contains(filtrar.toLowerCase())) {
-        objetosFiltrados.add(objeto);
+    if (filtrar != '') {
+      for (var objeto in objetos) {
+        if (objeto.toString().toLowerCase().contains(filtrar.toLowerCase())) {
+          objetosFiltrados.add(objeto);
+        }
       }
+    }
+
+    else {
+      objetosFiltrados = objetoOriginal;
     }
 
     emitirEstadoFiltrado(objetosFiltrados);
   }
-
 
   Uri montarUri(ItemType type) {
     return Uri(
@@ -148,6 +154,8 @@ class DataService {
       'propertyNames': type.properties,
       'columnNames': type.columns
     };
+
+    objetoOriginal = json;
   }
 
   void emitirEstadoFiltrado(List objetosFiltrados) {
@@ -155,9 +163,10 @@ class DataService {
 
     estado['dataObjects'] = objetosFiltrados;
 
+    print(objetoOriginal);
+
     tableStateNotifier.value = estado;
   }
-
 
   bool temRequisicaoEmCurso() =>
       tableStateNotifier.value['status'] == TableStatus.loading;
