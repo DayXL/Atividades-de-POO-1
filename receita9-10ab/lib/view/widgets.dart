@@ -7,7 +7,6 @@ class MyApp extends HookWidget {
   @override
 
   Widget build(BuildContext context) {
-    var state = useState(7);
 
     return MaterialApp(
 
@@ -17,42 +16,10 @@ class MyApp extends HookWidget {
 
       home: Scaffold(
 
-        appBar: AppBar( 
-
-          title: const Text("Dicas"),
-
-          actions:[
-
-            PopupMenuButton(
-              initialValue: state.value, 
-
-              itemBuilder: (_) => valores.map(
-
-                (num) => PopupMenuItem(
-                  value: num,
-
-                  child: Text("Carregar $num itens por vez"),
-
-
-                ) 
-
-              ).toList(),
-
-              onSelected: (number){
-                state.value = number;
-                dataService.numberOfItems = number;
-
-              },
-
-
-
-            )
-
-          ] 
-
-          
-
-          ),
+        appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(kToolbarHeight),
+            child: MyAppBar(),
+        ),
 
         body: ValueListenableBuilder(
 
@@ -112,7 +79,6 @@ class MyApp extends HookWidget {
   }
 
 }
-
 
 class NewNavBar extends HookWidget {
 
@@ -214,5 +180,52 @@ class DataTableWidget extends HookWidget {
         ).toList());
 
   }
+
+}
+
+class MyAppBar extends HookWidget {
+  const MyAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var state = useState(7);
+
+    return AppBar( 
+
+          title: const Text("Dicas"),
+
+          actions:[
+
+            PopupMenuButton(
+              initialValue: state.value, 
+
+              itemBuilder: (_) => valores.map(
+
+                (num) => PopupMenuItem(
+                  value: num,
+
+                  child: Text("Carregar $num itens por vez"),
+
+
+                ) 
+
+              ).toList(),
+
+              onSelected: (number){
+                state.value = number;
+                dataService.numberOfItems = number;
+
+              },
+
+
+
+            )
+
+          ] 
+
+          
+  );
+  
+}
 
 }
