@@ -198,6 +198,7 @@ class MyAppBar extends HookWidget {
               child: TextField(
                 onChanged: (value) {
                   print('New text: $value');
+                  dataService.filtrarEstadoAtual(value);
                 },
             
                 decoration: const InputDecoration(

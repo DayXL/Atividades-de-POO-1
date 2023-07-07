@@ -85,6 +85,23 @@ class DataService {
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
 
+  void filtrarEstadoAtual(String filtrar) {
+    List objetos = tableStateNotifier.value['dataObjects'] ?? [];
+
+    if (objetos.isEmpty) return;
+
+    List objetosFiltrados = [];
+
+    for (var objeto in objetos) {
+      if (objeto.toString().toLowerCase().contains(filtrar.toLowerCase())) {
+        objetosFiltrados.add(objeto);
+      }
+    }
+
+    emitirEstadoFiltrado(objetosFiltrados);
+  }
+
+
   Uri montarUri(ItemType type) {
     return Uri(
         scheme: 'https',
@@ -132,6 +149,15 @@ class DataService {
       'columnNames': type.columns
     };
   }
+
+  void emitirEstadoFiltrado(List objetosFiltrados) {
+    var estado = Map<String, dynamic>.from(tableStateNotifier.value);
+
+    estado['dataObjects'] = objetosFiltrados;
+
+    tableStateNotifier.value = estado;
+  }
+
 
   bool temRequisicaoEmCurso() =>
       tableStateNotifier.value['status'] == TableStatus.loading;
