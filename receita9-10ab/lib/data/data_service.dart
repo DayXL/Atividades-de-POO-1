@@ -163,8 +163,6 @@ class DataService {
 
     estado['dataObjects'] = objetosFiltrados;
 
-    print(objetoOriginal);
-
     tableStateNotifier.value = estado;
   }
 

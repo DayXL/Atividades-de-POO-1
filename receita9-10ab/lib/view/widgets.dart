@@ -197,7 +197,6 @@ class MyAppBar extends HookWidget {
             Flexible(
               child: TextField(
                 onChanged: (value) {
-                  print('New text: $value');
                   dataService.filtrarEstadoAtual(value);
                 },
             
