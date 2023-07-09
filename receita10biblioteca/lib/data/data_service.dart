@@ -100,14 +100,11 @@ class DataService {
 
     if (objetos.isEmpty) return;
 
-    List objetosFiltrados = [];
+    List objetosFiltrados = objetoOriginal;
 
     if (filtrar != '') {
-      for (var objeto in objetos) {
-        if (objeto.toString().toLowerCase().contains(filtrar.toLowerCase())) {
-          objetosFiltrados.add(objeto);
-        }
-      }
+      objetosFiltrados = objetos.where((objeto) =>
+      objeto.toString().toLowerCase().contains(filtrar.toLowerCase())).toList();
     }
 
     else {
