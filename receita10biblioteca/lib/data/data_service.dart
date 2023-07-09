@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../util/decididor.dart';
-import '../util/ordenador.dart';
 
 var valores = [3, 7, 15];
 
@@ -67,9 +66,7 @@ class DataService {
 
     if (objetos == []) return;
 
-    Ordenador ord = Ordenador();
-
-    var objetosOrdenados = [];
+    var objetosOrdenados = objetos;
 
     bool crescente = cresc;
 
@@ -80,8 +77,20 @@ class DataService {
           0;
     }
 
-    //objetosOrdenados = ord.ordenarItem(objetos, DecididorJson(propriedade));
-    objetosOrdenados = ord.ordenarItem2(objetos, precisaTrocarAtualPeloProximo);
+  objetosOrdenados.sort((a, b) {
+    if (precisaTrocarAtualPeloProximo(a, b)) {
+      return 1; // Retorna um valor positivo para trocar a posição de a e b
+    } 
+    
+    else if (precisaTrocarAtualPeloProximo(b, a)) {
+      return -1; // Retorna um valor negativo para manter a posição de a e b
+    } 
+    
+    else {
+      return 0; // Retorna 0 se a e b são iguais em termos de ordenação
+    }
+
+  });
 
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
