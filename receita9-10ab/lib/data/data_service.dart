@@ -9,27 +9,27 @@ var valores = [3, 7, 15];
 enum TableStatus { idle, loading, ready, error }
 
 enum ItemType {
-  beer,
-  coffee,
-  nation,
+  address,
+  computer,
+  app,
   none;
 
   String get asString => '$name';
 
-  List<String> get columns => this == coffee
-      ? ["Nome", "Origem", "Tipo"]
-      : this == beer
-          ? ["Nome", "Estilo", "IBU"]
-          : this == nation
-              ? ["Nome", "Capital", "Idioma", "Esporte"]
+  List<String> get columns => this == computer
+      ? ["Plataforma", "Tipo", "Os", "Stack" ]
+      : this == address
+          ? ["Cidade", "Nome da rua", "Endereço da rua", "Endereço secundário", "Número"]
+          : this == app
+              ? ["Nome", "Versão", "Criador", "Padrão de regras"]
               : [];
 
-  List<String> get properties => this == coffee
-      ? ["blend_name", "origin", "variety"]
-      : this == beer
-          ? ["name", "style", "ibu"]
-          : this == nation
-              ? ["nationality", "capital", "language", "national_sport"]
+  List<String> get properties => this == computer
+      ? ["platform", "type", "os", "stack"]
+      : this == address
+          ? ["city", "street_name", "street_address", "secondary_address", "building_number"]
+          : this == app
+              ? ["app_name", "app_version", "app_author", "app_semantic_version"]
               : [];
 }
 
@@ -57,7 +57,7 @@ class DataService {
   });
 
   void carregar(index) {
-    final params = [ItemType.coffee, ItemType.beer, ItemType.nation];
+    final params = [ItemType.computer, ItemType.address, ItemType.app];
 
     carregarPorTipo(params[index]);
   }

@@ -110,11 +110,11 @@ class NewNavBar extends HookWidget {
 
         BottomNavigationBarItem(
 
-          label: "Cafés", icon: Icon(Icons.coffee_outlined),),
+          label: "Computador", icon: Icon(Icons.computer_outlined),),
 
-        BottomNavigationBarItem(label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
+        BottomNavigationBarItem(label: "Cidade", icon: Icon(Icons.location_city_outlined)),
 
-        BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
+        BottomNavigationBarItem(label: "App", icon: Icon(Icons.app_shortcut_outlined))
 
       ]);
 
