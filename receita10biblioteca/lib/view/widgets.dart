@@ -122,8 +122,6 @@ class NewNavBar extends HookWidget {
 
   }
 
-
-
 }
 
 
@@ -209,6 +207,26 @@ class MyAppBar extends HookWidget {
                   
                 ),
                           
+              ),
+            ),
+
+            Flexible(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back_outlined), 
+                onPressed: () {  
+                  dataService.voltarEstadoAnterior();
+
+                },
+              ),
+            ),
+
+            Flexible(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_forward_outlined), 
+                onPressed: () {  
+                  dataService.voltarEstadoSucessor();
+
+                },
               ),
             ),
                        

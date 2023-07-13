@@ -40,6 +40,8 @@ class DataService {
   int _numberOfItems = DEFAULT_N_ITEMS;
 
   var objetoOriginal = [];
+  final List<Map<String, dynamic>> estadosAnteriores = [];
+  final List<Map<String, dynamic>> estadosSucessores = [];
 
   set numberOfItems(n) {
     _numberOfItems = n < 0
@@ -52,16 +54,20 @@ class DataService {
   final ValueNotifier<Map<String, dynamic>> tableStateNotifier = ValueNotifier({
     'status': TableStatus.idle,
     'dataObjects': [],
-    'itemType': ItemType.none
+    'itemType': ItemType.none,
   });
 
   void carregar(index) {
+    estadosAnteriores.add(tableStateNotifier.value);
+
     final params = [ItemType.coffee, ItemType.beer, ItemType.nation];
 
     carregarPorTipo(params[index]);
   }
 
   void ordenarEstadoAtual(String propriedade, [bool cresc = true]) {
+    estadosAnteriores.add(tableStateNotifier.value);
+
     List objetos = tableStateNotifier.value['dataObjects'] ?? [];
 
     if (objetos == []) return;
@@ -77,20 +83,15 @@ class DataService {
           0;
     }
 
-  objetosOrdenados.sort((a, b) {
-    if (precisaTrocarAtualPeloProximo(a, b)) {
-      return 1; // Retorna um valor positivo para trocar a posição de a e b
-    } 
-    
-    else if (precisaTrocarAtualPeloProximo(b, a)) {
-      return -1; // Retorna um valor negativo para manter a posição de a e b
-    } 
-    
-    else {
-      return 0; // Retorna 0 se a e b são iguais em termos de ordenação
-    }
-
-  });
+    objetosOrdenados.sort((a, b) {
+      if (precisaTrocarAtualPeloProximo(a, b)) {
+        return 1; // Retorna um valor positivo para trocar a posição de a e b
+      } else if (precisaTrocarAtualPeloProximo(b, a)) {
+        return -1; // Retorna um valor negativo para manter a posição de a e b
+      } else {
+        return 0; // Retorna 0 se a e b são iguais em termos de ordenação
+      }
+    });
 
     emitirEstadoOrdenado(objetosOrdenados, propriedade);
   }
@@ -98,20 +99,51 @@ class DataService {
   void filtrarEstadoAtual(String filtrar) {
     List objetos = objetoOriginal;
 
+    estadosAnteriores.add(tableStateNotifier.value);
+
     if (objetos.isEmpty) return;
 
     List objetosFiltrados = objetoOriginal;
 
     if (filtrar != '') {
-      objetosFiltrados = objetos.where((objeto) =>
-      objeto.toString().toLowerCase().contains(filtrar.toLowerCase())).toList();
-    }
-
-    else {
+      objetosFiltrados = objetos
+          .where((objeto) =>
+              objeto.toString().toLowerCase().contains(filtrar.toLowerCase()))
+          .toList();
+    } else {
       objetosFiltrados = objetoOriginal;
     }
 
     emitirEstadoFiltrado(objetosFiltrados);
+  }
+
+  void voltarEstadoAnterior() {
+
+    if (estadosAnteriores.isNotEmpty) {
+
+      tableStateNotifier.value = estadosAnteriores[estadosAnteriores.length - 1];
+
+      estadosSucessores.add(estadosAnteriores[estadosAnteriores.length - 1]);
+
+      estadosAnteriores.remove(tableStateNotifier.value);
+
+    }
+   
+
+  }
+
+  void voltarEstadoSucessor() {
+
+    if (estadosSucessores.isNotEmpty) {
+
+      tableStateNotifier.value = estadosSucessores[0];
+
+      estadosAnteriores.add(estadosSucessores[0]);
+      
+      estadosSucessores.remove(tableStateNotifier.value);
+
+    }
+   
   }
 
   Uri montarUri(ItemType type) {
