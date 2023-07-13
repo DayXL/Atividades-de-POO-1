@@ -193,20 +193,24 @@ class MyAppBar extends HookWidget {
     var state = useState(7);
 
     return AppBar( 
+          title: const Text("Dicas"),
 
           actions:[
+
           
             Flexible(
-              child: TextField(
-                onChanged: (value) {
-                  _callback(value);
-                },
-            
-                decoration: const InputDecoration(
-                  hintText: 'Digite algo...',
-                  
-                ),
+              child: Card(
+                child: TextField(
+                  onChanged: (value) {
+                    _callback(value);
+                  },
                           
+                  decoration: const InputDecoration(
+                    hintText: ' Digite algo...',
+                    
+                  ),
+                            
+                ),
               ),
             ),
 
