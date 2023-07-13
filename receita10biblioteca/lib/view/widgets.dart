@@ -80,7 +80,7 @@ class MyApp extends HookWidget {
 
 }
 
-class NewNavBar extends HookWidget {
+class NewNavBar extends StatelessWidget {
 
   final _itemSelectedCallback;
 
@@ -92,32 +92,37 @@ class NewNavBar extends HookWidget {
 
   Widget build(BuildContext context) {
 
-    var state = useState(1);
+    return ValueListenableBuilder(
 
-    return BottomNavigationBar(
+      valueListenable: dataService.tableStateNotifier,
 
-      onTap: (index){
+      builder:(_, value, __){
 
-        state.value = index;
+        return BottomNavigationBar(
+      
+          onTap: (index){
+      
+            _itemSelectedCallback(index);                
+      
+          }, 
+      
+          currentIndex: dataService.tableStateNotifier.value['index'] ?? dataService.indexAntes,
+      
+          items: const [
+      
+            BottomNavigationBarItem(
+      
+              label: "Cafés", icon: Icon(Icons.coffee_outlined),),
+      
+            BottomNavigationBarItem(label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
+      
+            BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
+      
+          ]);
 
-        _itemSelectedCallback(index);                
-
-      }, 
-
-      currentIndex: state.value,
-
-      items: const [
-
-        BottomNavigationBarItem(
-
-          label: "Cafés", icon: Icon(Icons.coffee_outlined),),
-
-        BottomNavigationBarItem(label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
-
-        BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
-
-      ]);
-
+      }
+    );
+    
 
 
   }

@@ -51,10 +51,13 @@ class DataService {
             : n;
   }
 
+  var indexAntes = 1;
+
   final ValueNotifier<Map<String, dynamic>> tableStateNotifier = ValueNotifier({
     'status': TableStatus.idle,
     'dataObjects': [],
     'itemType': ItemType.none,
+    'index': 1
   });
 
   void carregar(index) {
@@ -62,7 +65,9 @@ class DataService {
 
     final params = [ItemType.coffee, ItemType.beer, ItemType.nation];
 
-    carregarPorTipo(params[index]);
+    indexAntes = tableStateNotifier.value['index'];
+
+    carregarPorTipo(params[index], index);
   }
 
   void ordenarEstadoAtual(String propriedade, [bool cresc = true]) {
@@ -118,32 +123,24 @@ class DataService {
   }
 
   void voltarEstadoAnterior() {
-
     if (estadosAnteriores.isNotEmpty) {
-
-      tableStateNotifier.value = estadosAnteriores[estadosAnteriores.length - 1];
+      tableStateNotifier.value =
+          estadosAnteriores[estadosAnteriores.length - 1];
 
       estadosSucessores.add(estadosAnteriores[estadosAnteriores.length - 1]);
 
       estadosAnteriores.remove(tableStateNotifier.value);
-
     }
-   
-
   }
 
   void voltarEstadoSucessor() {
-
     if (estadosSucessores.isNotEmpty) {
-
       tableStateNotifier.value = estadosSucessores[0];
 
       estadosAnteriores.add(estadosSucessores[0]);
-      
-      estadosSucessores.remove(tableStateNotifier.value);
 
+      estadosSucessores.remove(tableStateNotifier.value);
     }
-   
   }
 
   Uri montarUri(ItemType type) {
@@ -184,13 +181,14 @@ class DataService {
     };
   }
 
-  void emitirEstadoPronto(ItemType type, var json) {
+  void emitirEstadoPronto(ItemType type, var json, int index) {
     tableStateNotifier.value = {
       'itemType': type,
       'status': TableStatus.ready,
       'dataObjects': json,
       'propertyNames': type.properties,
-      'columnNames': type.columns
+      'columnNames': type.columns,
+      'index': index
     };
 
     objetoOriginal = json;
@@ -210,7 +208,7 @@ class DataService {
   bool mudouTipoDeItemRequisitado(ItemType type) =>
       tableStateNotifier.value['itemType'] != type;
 
-  void carregarPorTipo(ItemType type) async {
+  void carregarPorTipo(ItemType type, int index) async {
     //ignorar solicitação se uma requisição já estiver em curso
 
     if (temRequisicaoEmCurso()) return;
@@ -223,7 +221,7 @@ class DataService {
 
     var json = await acessarApi(uri); //, type);
 
-    emitirEstadoPronto(type, json);
+    emitirEstadoPronto(type, json, index);
   }
 }
 
