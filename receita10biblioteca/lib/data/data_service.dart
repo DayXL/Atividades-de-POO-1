@@ -123,6 +123,10 @@ class DataService {
   }
 
   void voltarEstadoAnterior() {
+    if (estadosAnteriores.length == 20) {
+      estadosAnteriores.removeAt(0);
+    }
+
     if (estadosAnteriores.isNotEmpty) {
       tableStateNotifier.value =
           estadosAnteriores[estadosAnteriores.length - 1];
@@ -134,6 +138,10 @@ class DataService {
   }
 
   void voltarEstadoSucessor() {
+    if (estadosSucessores.length == 20) {
+      estadosSucessores.removeAt(estadosSucessores.length - 1);
+    }
+
     if (estadosSucessores.isNotEmpty) {
       tableStateNotifier.value = estadosSucessores[0];
 
