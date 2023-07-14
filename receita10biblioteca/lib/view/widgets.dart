@@ -174,7 +174,7 @@ class DataTableWidget extends HookWidget {
 
             cells: propertyNames.map(
 
-              (propName) => DataCell(Text(obj[propName]))
+              (propName) => DataCell(Text(obj[propName] ?? ''))
 
             ).toList()
 
