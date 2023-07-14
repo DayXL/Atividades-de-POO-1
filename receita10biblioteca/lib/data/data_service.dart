@@ -40,8 +40,8 @@ class DataService {
   int _numberOfItems = DEFAULT_N_ITEMS;
 
   var objetoOriginal = [];
-  final List<Map<String, dynamic>> estadosAnteriores = [];
-  final List<Map<String, dynamic>> estadosSucessores = [];
+  List<Map<String, dynamic>> estadosAnteriores = [];
+  List<Map<String, dynamic>> estadosSucessores = [];
 
   set numberOfItems(n) {
     _numberOfItems = n < 0
@@ -52,6 +52,7 @@ class DataService {
   }
 
   var indexAntes = 1;
+  bool anterior = true;
 
   final ValueNotifier<Map<String, dynamic>> tableStateNotifier = ValueNotifier({
     'status': TableStatus.idle,
@@ -123,6 +124,9 @@ class DataService {
   }
 
   void voltarEstadoAnterior() {
+    bool estadoAnterior = true;
+    bool limpar = true;
+
     if (estadosAnteriores.length == 20) {
       estadosAnteriores.removeAt(0);
     }
@@ -135,9 +139,14 @@ class DataService {
 
       estadosAnteriores.remove(tableStateNotifier.value);
     }
+
+    limparVetor(estadoAnterior, limpar);
   }
 
   void voltarEstadoSucessor() {
+    bool estadoSucessor = false;
+    bool limpar = false;
+
     if (estadosSucessores.length == 20) {
       estadosSucessores.removeAt(estadosSucessores.length - 1);
     }
@@ -148,6 +157,23 @@ class DataService {
       estadosAnteriores.add(estadosSucessores[0]);
 
       estadosSucessores.remove(tableStateNotifier.value);
+    }
+
+    limparVetor(estadoSucessor, limpar);
+  }
+
+  void limparVetor(bool estado, bool limpar) {
+    if (estado != anterior) {
+      anterior = estado;
+
+      if (limpar) {
+        estadosSucessores = [];
+      }
+
+      else {
+        estadosAnteriores = [];
+
+      }
     }
   }
 
